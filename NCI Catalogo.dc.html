@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wdth,wght@50..125,100..900&amp;display=swap">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#3B4256;font-family:'Saira',system-ui,sans-serif;font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:#0A1A44;text-decoration:none}
+a:hover{color:#D71920}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid #D71920;outline-offset:2px}
+::selection{background:rgba(215,25,32,0.18)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+<script src="./nci-data.js"></script>
+<script src="./nci-circuit.js"></script>
+<script src="./image-slot.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative; overflow-x:clip; background:#FFFFFF;">
+<dc-import name="NCIHeader" tone="dark" active="catalogo" show-mega="{{ showMega }}" hint-size="100%,0px"></dc-import>
+
+<main style="position:relative; z-index:1; background:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); margin-bottom:calc(-1 * clamp(32px,3.3vw,48px));">
+
+<section data-screen-label="Encabezado Catálogo" style="position:relative; overflow:hidden; background:radial-gradient(120% 140% at 0% 0%, #1A2C5C 0%, #0D1B3E 45%, #050C24 100%); color:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); padding:clamp(120px,10vw,152px) 0 clamp(48px,5vw,72px);">
+  <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
+    <div style="position:absolute; left:-8%; top:50%; transform:translateY(-50%); height:min(50vw, 720px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.30) 0%, rgba(70,120,210,0) 68%);"></div>
+    <div style="position:absolute; right:12%; top:40%; height:min(34vw, 480px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.20) 0%, rgba(215,25,32,0) 68%);"></div>
+  </div>
+  <canvas ref="{{ cvsRef }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none;"></canvas>
+  <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; pointer-events:none;">
+    <div style="display:flex; flex-direction:column; gap:20px; max-width:820px; pointer-events:auto;">
+      <nav aria-label="Ruta" data-hero-fade="0" style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:14px; line-height:20px; color:rgba(255,255,255,0.72);">
+        <a href="index.html" style="color:rgba(255,255,255,0.72);" style-hover="color:#FFFFFF">Inicio</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        <span aria-current="page" style="color:#FFFFFF;">Catálogo</span>
+      </nav>
+      <div data-hero-fade="1" style="display:flex; align-items:center; gap:14px; font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.85);"><span style="width:32px; height:2px; background:#D71920;"></span>Productos</div>
+      <h1 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(34px,3.9vw,56px); line-height:1.08; letter-spacing:-0.01em;"><span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="0" style="display:block;">Catálogo</span></span></h1>
+      <p data-hero-fade="2" style="margin:0; max-width:560px; font-size:clamp(17px,1.3vw,19px); line-height:1.5; font-weight:400; color:rgba(255,255,255,0.85); text-wrap:pretty;">Insumos industriales para minería, construcción e industria. Explora por categoría.</p>
+    </div>
+    <span data-hero-fade="3" style="display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 18px 0 14px; border-radius:999px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); font-size:15px; font-weight:500; white-space:nowrap; flex:none; pointer-events:auto;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>14 categorías</span>
+  </div>
+</section>
+
+<section data-screen-label="Grilla de categorías" style="padding:clamp(40px,4.4vw,64px) 0 calc(clamp(64px,6.4vw,96px) + clamp(32px,3.3vw,48px));">
+  <div style="max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:grid; grid-template-columns:{{ gridCols }}; gap:clamp(12px,1.7vw,24px);">
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}"><span ref="{{ skelRef }}" data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span><span data-skel="1" style="display:block; aspect-ratio:4 / 5; border-radius:20px; background:#EEECE7;"></span></sc-if>
+    <sc-for list="{{ cats }}" as="c" hint-placeholder-count="0">
+      <a href="{{ c.href }}" data-reveal="{{ c.d }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" aria-label="{{ c.name }}" style="position:relative; display:block; aspect-ratio:4 / 5; border-radius:16px; overflow:hidden; background:{{ c.bg }}; color:#FFFFFF; transition:transform 400ms cubic-bezier(0.22,1,0.36,1), box-shadow 400ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-4px); box-shadow:0 24px 48px -24px rgba(10,26,68,0.35)">
+        <sc-if value="{{ c.hasImg }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute; inset:0; transform:{{ c.imgT }}; transition:transform 500ms cubic-bezier(0.22,1,0.36,1);"><img src="{{ c.src }}" alt="" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover;"></div>
+        </sc-if>
+        <sc-if value="{{ c.noImg }}" hint-placeholder-val="{{ false }}">
+          <image-slot id="{{ c.slot }}" placeholder="{{ c.ph }}" shape="rect" style="position:absolute; inset:0; width:100%; height:100%; display:block;"></image-slot>
+        </sc-if>
+        <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(6,15,43,0.30) 0%, rgba(6,15,43,0) 24%, rgba(6,15,43,0) 48%, rgba(6,15,43,0.88) 100%);"></div>
+        <span style="position:absolute; top:14px; left:14px; width:40px; height:40px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); pointer-events:none;"><img src="{{ c.iconW }}" alt="" style="width:20px; height:20px;"></span>
+        <div style="position:absolute; left:18px; right:14px; bottom:16px; display:flex; align-items:flex-end; justify-content:space-between; gap:12px; pointer-events:none;">
+          <span lang="es" style="flex:1 1 auto; min-width:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(17px,1.3vw,19px); line-height:1.15; letter-spacing:-0.01em; text-wrap:balance; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:break-word;">{{ c.name }}</span>
+          <span style="flex:none; width:40px; height:40px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:{{ c.btnBg }}; color:{{ c.btnFg }}; transition:background 150ms cubic-bezier(0.4,0,0.2,1), color 150ms;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ c.arrT }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+</main>
+
+<dc-import name="NCIFooter" hint-size="100%,480px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showMega&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Estados&quot;}}">
+const TONES = ['linear-gradient(165deg, #2A3A66 0%, #14224A 50%, #0A1532 100%)', 'linear-gradient(200deg, #33456F 0%, #1A2C5C 55%, #0A1532 100%)', 'linear-gradient(150deg, #24345E 0%, #0D1B3E 60%, #081230 100%)'];
+class Component extends DCLogic {
+  state = { w: window.innerWidth, hc: -1 };
+  rootRef = el => { this.root = el; };
+  skelRef = el => { if (el && el !== this.skelEl) { this.skelEl = el; [...el.parentNode.children].filter(c => c.dataset && c.dataset.skel).forEach(c => c.animate([{ opacity: 1 }, { opacity: 0.5 }, { opacity: 1 }], { duration: 1400, iterations: Infinity, easing: 'ease-in-out' })); } else if (!el) this.skelEl = null; };
+  componentDidMount() {
+        this.onResize = () => { const w = document.documentElement.clientWidth || window.innerWidth; if (w !== this.state.w) this.setState({ w }); };
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    if (typeof ResizeObserver !== 'undefined') { this.ro = new ResizeObserver(this.onResize); this.ro.observe(document.documentElement); }
+    let rn = 0; this.rpoll = setInterval(() => { this.onResize(); if (++rn > 10) clearInterval(this.rpoll); }, 250);
+    this.ready = () => { this.forceUpdate(); requestAnimationFrame(() => { this.unreveal = window.NCI.reveal(this.root); }); };
+    if (window.NCI) this.ready(); else window.addEventListener('nci-ready', this.ready, { once: true });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); this.ro && this.ro.disconnect(); clearInterval(this.rpoll); this.unreveal && this.unreveal(); this.cv && this.cv.destroy(); }
+  renderVals() {
+    const N = window.NCI, st = this.state, w = document.documentElement.clientWidth || st.w;
+    if (N && !this._cv) this._cv = N.circuit(this, 'cv');
+    const cats = (N ? N.CATS : []).map((c, i) => {
+      const h = st.hc === i;
+      return { ...c, d: i % 5, hasImg: !!c.src, noImg: !c.src, slot: 'cat-' + c.key, ph: 'Foto: ' + c.name, bg: TONES[i % 3], iconW: N.ico(c.key, '#FFFFFF'),
+        enter: () => this.setState({ hc: i }), leave: () => this.setState({ hc: -1 }),
+        imgT: h ? 'scale(1.05)' : 'scale(1)', btnBg: h ? '#D71920' : 'rgba(255,255,255,0.92)', btnFg: h ? '#FFFFFF' : '#0A1A44', arrT: h ? 'translateX(3px)' : 'none' };
+    });
+    const n = w >= 1200 ? 5 : w >= 900 ? 4 : w >= 600 ? 3 : 2;
+    return {
+      loading: !N, skelRef: this.skelRef, rootRef: this.rootRef, cvsRef: this._cv || null, cats, gridCols: 'repeat(' + n + ', minmax(0,1fr))', showMega: !!this.props.showMega };
+  }
+}
+</script>
+</body>
+</html>

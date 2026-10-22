@@ -1,0 +1,6 @@
+Norte Chile Industrial — avance de diseño
+
+Abrir index.html en un navegador (Chrome, Edge o Safari).
+Todas las páginas están enlazadas desde el menú.
+
+Nota: requiere conexión a internet para cargar la tipografía.

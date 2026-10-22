@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wdth,wght@50..125,100..900&amp;display=swap">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#3B4256;font-family:'Saira',system-ui,sans-serif;font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:#0A1A44;text-decoration:none}
+a:hover{color:#D71920}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid #D71920;outline-offset:2px}
+::selection{background:rgba(215,25,32,0.18)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+<script src="./nci-data.js"></script>
+<script src="./nci-circuit.js"></script>
+<script src="./image-slot.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative; overflow-x:clip; background:#FFFFFF;">
+<dc-import name="NCIHeader" tone="dark" active="catalogo" hint-size="100%,0px"></dc-import>
+
+<main style="position:relative; z-index:1; background:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); margin-bottom:calc(-1 * clamp(32px,3.3vw,48px));">
+
+<section data-screen-label="Encabezado categoría" style="position:relative; overflow:hidden; background:radial-gradient(120% 140% at 0% 0%, #1A2C5C 0%, #0D1B3E 45%, #050C24 100%); color:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); padding:clamp(120px,10vw,152px) 0 clamp(48px,5vw,72px);">
+  <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
+    <div style="position:absolute; left:-8%; top:50%; transform:translateY(-50%); height:min(50vw, 720px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.30) 0%, rgba(70,120,210,0) 68%);"></div>
+    <div style="position:absolute; right:12%; top:40%; height:min(34vw, 480px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.20) 0%, rgba(215,25,32,0) 68%);"></div>
+  </div>
+  <canvas ref="{{ cvsRef }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none;"></canvas>
+  <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; pointer-events:none;">
+    <div style="display:flex; flex-direction:column; gap:20px; max-width:820px; pointer-events:auto;">
+      <nav aria-label="Ruta" data-hero-fade="0" style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:14px; line-height:20px; color:rgba(255,255,255,0.72);">
+        <a href="index.html" style="color:rgba(255,255,255,0.72);" style-hover="color:#FFFFFF">Inicio</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        <a href="NCI%20Catalogo.dc.html" style="color:rgba(255,255,255,0.72);" style-hover="color:#FFFFFF">Catálogo</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        <span aria-current="page" style="color:#FFFFFF;">{{ cat.name }}</span>
+      </nav>
+      <div data-hero-fade="1" style="display:flex; align-items:center; gap:14px; font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.85);"><span style="width:32px; height:2px; background:#D71920;"></span>Catálogo</div>
+      <h1 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(34px,3.9vw,56px); line-height:1.08; letter-spacing:-0.01em;"><span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="0" style="display:block;">{{ cat.name }}</span></span></h1>
+      <sc-if value="{{ cat.hasDesc }}" hint-placeholder-val="{{ false }}"><p data-hero-fade="2" style="margin:0; max-width:560px; font-size:clamp(17px,1.3vw,19px); line-height:1.5; font-weight:400; color:rgba(255,255,255,0.85); text-wrap:pretty;">{{ cat.desc }}</p></sc-if>
+    </div>
+    <span data-hero-fade="3" style="display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 18px 0 14px; border-radius:999px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); font-size:15px; font-weight:500; white-space:nowrap; flex:none; pointer-events:auto;"><img src="{{ cat.iconW }}" alt="" style="width:18px; height:18px;">{{ countLabel }}</span>
+  </div>
+</section>
+
+<section data-screen-label="Filtros y productos" style="padding:clamp(40px,4.4vw,64px) 0 calc(clamp(64px,6.4vw,96px) + clamp(32px,3.3vw,48px));">
+  <div style="max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:grid; grid-template-columns:{{ layoutCols }}; gap:clamp(24px,3.3vw,48px); align-items:start;">
+
+    <sc-if value="{{ sidebar }}" hint-placeholder-val="{{ true }}">
+      <aside aria-label="Filtros" style="position:sticky; top:112px; display:flex; flex-direction:column; gap:20px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:36px;">
+          <span style="display:flex; align-items:center; gap:14px; font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#0A1A44;"><span style="width:32px; height:2px; background:#D71920;"></span>Filtrar por tipo</span>
+          <button type="button" onClick="{{ clear }}" disabled="{{ noFilters }}" style="height:36px; padding:0 4px; border:0; background:transparent; color:#D71920; font-size:14px; font-weight:600; cursor:pointer; opacity:{{ clearO }}; transition:opacity 150ms;">Limpiar</button>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <button type="button" aria-pressed="{{ all.checked }}" onClick="{{ clearTipo }}" style="display:flex; align-items:center; gap:12px; min-height:48px; padding:0 8px 0 18px; border:0; border-radius:999px; background:{{ all.bg }}; color:{{ all.fg }}; font-size:16px; font-weight:{{ all.weight }}; text-align:left; cursor:pointer; transition:background 150ms, color 150ms;" style-hover="background:{{ all.hover }}">
+            <span style="flex:none; width:6px; height:6px; border-radius:999px; background:#D71920; opacity:{{ all.dotO }}; transition:opacity 150ms;"></span>
+            <span style="flex:1; min-width:0;">Todos</span>
+            <span style="flex:none; min-width:32px; height:32px; padding:0 10px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:{{ all.badgeBg }}; color:{{ all.badgeFg }}; font-size:14px; font-weight:600; font-variant-numeric:tabular-nums;">{{ all.n }}</span>
+          </button>
+          <sc-for list="{{ opts }}" as="o" hint-placeholder-count="4">
+            <button type="button" role="checkbox" aria-checked="{{ o.checked }}" onClick="{{ o.toggle }}" style="display:flex; align-items:center; gap:12px; min-height:48px; padding:0 8px 0 18px; border:0; border-radius:999px; background:{{ o.pillBg }}; color:{{ o.pillFg }}; font-size:16px; font-weight:{{ o.weight }}; text-align:left; cursor:pointer; transition:background 150ms, color 150ms;" style-hover="background:{{ o.hover }}">
+              <span style="flex:none; width:6px; height:6px; border-radius:999px; background:#D71920; opacity:{{ o.dotO }}; transition:opacity 150ms;"></span>
+              <span style="flex:1; min-width:0;">{{ o.label }}</span>
+              <span style="flex:none; min-width:32px; height:32px; padding:0 10px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:{{ o.badgeBg }}; color:{{ o.badgeFg }}; font-size:14px; font-weight:600; font-variant-numeric:tabular-nums;">{{ o.n }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ med.on }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; flex-direction:column; gap:16px; padding-top:20px; border-top:1px solid rgba(10,26,68,0.12);">
+          <span style="display:flex; align-items:center; gap:14px; font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#0A1A44;"><span style="width:32px; height:2px; background:#D71920;"></span>Medida</span>
+          <div style="display:flex; justify-content:space-between; font-size:14px; color:#646B7E; font-variant-numeric:tabular-nums;"><span>{{ med.minLabel }}</span><span>{{ med.maxLabel }}</span></div>
+          <div ref="{{ med.trackRef }}" onPointerDown="{{ med.down }}" style="position:relative; height:28px; margin:0 12px; cursor:pointer; touch-action:none;">
+            <span style="position:absolute; left:-12px; right:-12px; top:50%; height:4px; margin-top:-2px; border-radius:999px; background:rgba(10,26,68,0.12);"></span>
+            <span style="position:absolute; left:{{ med.loPct }}; width:{{ med.spanPct }}; top:50%; height:4px; margin-top:-2px; border-radius:999px; background:#0A1A44;"></span>
+            <button type="button" role="slider" aria-label="Medida mínima" aria-valuemin="0" aria-valuemax="{{ med.max }}" aria-valuenow="{{ med.lo }}" aria-valuetext="{{ med.loLabel }}" onKeyDown="{{ med.loKey }}" style="position:absolute; top:50%; left:{{ med.loPct }}; width:24px; height:24px; margin:-12px 0 0 -12px; padding:0; border-radius:999px; border:2px solid #0A1A44; background:#FFFFFF; box-shadow:0 2px 6px rgba(10,26,68,0.2); cursor:grab; touch-action:none;" style-hover="border-color:#D71920"></button>
+            <button type="button" role="slider" aria-label="Medida máxima" aria-valuemin="0" aria-valuemax="{{ med.max }}" aria-valuenow="{{ med.hi }}" aria-valuetext="{{ med.hiLabel }}" onKeyDown="{{ med.hiKey }}" style="position:absolute; top:50%; left:{{ med.hiPct }}; width:24px; height:24px; margin:-12px 0 0 -12px; padding:0; border-radius:999px; border:2px solid #0A1A44; background:#FFFFFF; box-shadow:0 2px 6px rgba(10,26,68,0.2); cursor:grab; touch-action:none;" style-hover="border-color:#D71920"></button>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; font-size:13px; line-height:18px; color:#646B7E;">Desde<dc-import name="NCISelect" options="{{ med.opts }}" value="{{ med.lo }}" on-change="{{ med.setLoV }}" variant="field" align="left" aria-label="Medida desde" hint-size="100%,44px"></dc-import></div>
+            <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; font-size:13px; line-height:18px; color:#646B7E;">Hasta<dc-import name="NCISelect" options="{{ med.opts }}" value="{{ med.hi }}" on-change="{{ med.setHiV }}" variant="field" align="left" aria-label="Medida hasta" hint-size="100%,44px"></dc-import></div>
+          </div>
+        </div>
+        </sc-if>
+      </aside>
+    </sc-if>
+
+    <div style="min-width:0; display:flex; flex-direction:column; gap:24px;">
+      <sc-if value="{{ chipsBar }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; margin:0 calc(-1 * clamp(20px,4.45vw,64px)); padding:0 clamp(20px,4.45vw,64px);">
+          <sc-for list="{{ opts }}" as="o" hint-placeholder-count="4">
+            <button type="button" aria-pressed="{{ o.checked }}" onClick="{{ o.toggle }}" style="flex:none; display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 18px; border-radius:999px; border:1px solid {{ o.chipBd }}; background:{{ o.chipBg }}; color:{{ o.chipFg }}; font-size:15px; white-space:nowrap; cursor:pointer;">{{ o.label }}<span style="font-size:13px; opacity:0.7;">{{ o.n }}</span></button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 24px; min-height:48px;">
+        <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px;">
+          <span style="font-size:15px; color:#3B4256; margin-right:4px;"><strong style="font-weight:600; color:#0A1A44;">{{ shown }}</strong> {{ shownLabel }}</span>
+          <sc-for list="{{ activeChips }}" as="a" hint-placeholder-count="0">
+            <button type="button" onClick="{{ a.remove }}" aria-label="Quitar filtro {{ a.label }}" style="display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 8px 0 12px; border-radius:999px; border:0; background:#0A1A44; color:#FFFFFF; font-size:14px; cursor:pointer;" style-hover="background:#D71920">{{ a.label }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+          </sc-for>
+        </div>
+        <dc-import name="NCISelect" options="{{ sortOpts }}" value="{{ sort }}" on-change="{{ onSortV }}" prefix="Ordenar:" aria-label="Ordenar por" hint-size="220px,44px"></dc-import>
+      </div>
+
+      <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+        <div ref="{{ skelRef }}" aria-hidden="true" style="display:grid; grid-template-columns:{{ gridCols }}; gap:clamp(12px,1.7vw,24px);">
+          <div style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10);"><span style="display:block; aspect-ratio:4 / 3; background:#EEECE7;"></span><div style="display:flex; flex-direction:column; gap:12px; padding:20px;"><span style="display:block; width:35%; height:10px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:75%; height:18px; border-radius:999px; background:#EEECE7;"></span><div style="display:flex; gap:8px; padding-top:12px;"><span style="display:block; width:116px; height:44px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:100%; height:44px; border-radius:999px; background:#EEECE7;flex:1;"></span></div></div></div><div style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10);"><span style="display:block; aspect-ratio:4 / 3; background:#EEECE7;"></span><div style="display:flex; flex-direction:column; gap:12px; padding:20px;"><span style="display:block; width:35%; height:10px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:75%; height:18px; border-radius:999px; background:#EEECE7;"></span><div style="display:flex; gap:8px; padding-top:12px;"><span style="display:block; width:116px; height:44px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:100%; height:44px; border-radius:999px; background:#EEECE7;flex:1;"></span></div></div></div><div style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10);"><span style="display:block; aspect-ratio:4 / 3; background:#EEECE7;"></span><div style="display:flex; flex-direction:column; gap:12px; padding:20px;"><span style="display:block; width:35%; height:10px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:75%; height:18px; border-radius:999px; background:#EEECE7;"></span><div style="display:flex; gap:8px; padding-top:12px;"><span style="display:block; width:116px; height:44px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:100%; height:44px; border-radius:999px; background:#EEECE7;flex:1;"></span></div></div></div><div style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10);"><span style="display:block; aspect-ratio:4 / 3; background:#EEECE7;"></span><div style="display:flex; flex-direction:column; gap:12px; padding:20px;"><span style="display:block; width:35%; height:10px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:75%; height:18px; border-radius:999px; background:#EEECE7;"></span><div style="display:flex; gap:8px; padding-top:12px;"><span style="display:block; width:116px; height:44px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:100%; height:44px; border-radius:999px; background:#EEECE7;flex:1;"></span></div></div></div><div style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10);"><span style="display:block; aspect-ratio:4 / 3; background:#EEECE7;"></span><div style="display:flex; flex-direction:column; gap:12px; padding:20px;"><span style="display:block; width:35%; height:10px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:75%; height:18px; border-radius:999px; background:#EEECE7;"></span><div style="display:flex; gap:8px; padding-top:12px;"><span style="display:block; width:116px; height:44px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:100%; height:44px; border-radius:999px; background:#EEECE7;flex:1;"></span></div></div></div><div style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10);"><span style="display:block; aspect-ratio:4 / 3; background:#EEECE7;"></span><div style="display:flex; flex-direction:column; gap:12px; padding:20px;"><span style="display:block; width:35%; height:10px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:75%; height:18px; border-radius:999px; background:#EEECE7;"></span><div style="display:flex; gap:8px; padding-top:12px;"><span style="display:block; width:116px; height:44px; border-radius:999px; background:#EEECE7;"></span><span style="display:block; width:100%; height:44px; border-radius:999px; background:#EEECE7;flex:1;"></span></div></div></div>
+        </div>
+      </sc-if>
+      <div style="display:grid; grid-template-columns:{{ gridCols }}; gap:clamp(12px,1.7vw,24px);">
+        <sc-for list="{{ items }}" as="p" hint-placeholder-count="6">
+          <article data-reveal="{{ p.d }}" style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10); transition:box-shadow 400ms cubic-bezier(0.22,1,0.36,1), transform 400ms cubic-bezier(0.22,1,0.36,1);" style-hover="box-shadow:0 24px 48px -24px rgba(10,26,68,0.35); transform:translateY(-4px)">
+            <a href="NCI%20Producto.dc.html" aria-label="Ver {{ p.name }}" style="position:relative; display:block; aspect-ratio:4 / 3; overflow:hidden; background:#1F2430;">
+              <sc-if value="{{ p.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ p.img }}" alt="{{ p.name }} (imagen referencial)" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; filter:blur(14px) saturate(0.85); transform:scale(1.25); transition:transform 500ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:scale(1.33)"><span style="position:absolute; left:12px; bottom:12px; pointer-events:none; display:inline-flex; align-items:center; height:28px; padding:0 12px; border-radius:999px; background:rgba(10,26,68,0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); color:#FFFFFF; font-size:12px; font-weight:500; letter-spacing:0.02em;">Imagen referencial</span></sc-if>
+              <sc-if value="{{ p.noImg }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ p.slot }}" placeholder="{{ p.ph }}" shape="rect" style="position:absolute; inset:0; width:100%; height:100%; display:block;"></image-slot></sc-if>
+            </a>
+            <div style="flex:1; display:flex; flex-direction:column; gap:8px; padding:20px;">
+              <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#646B7E;">{{ p.tipo }}</span>
+              <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em; text-wrap:balance;"><a href="NCI%20Producto.dc.html" style="color:#0A1A44;" style-hover="color:#D71920">{{ p.name }}</a></h3>
+              <div style="margin-top:auto; padding-top:12px; display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; gap:8px;">
+                  <div role="group" aria-label="Cantidad" style="flex:none; display:flex; align-items:center; height:44px; border-radius:999px; border:1px solid rgba(10,26,68,0.16); background:#FFFFFF;">
+                    <button type="button" onClick="{{ p.dec }}" aria-label="Restar" style="width:38px; height:42px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:{{ p.decO }}; transition:background 150ms;" style-hover="background:rgba(10,26,68,0.06)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+                    <span aria-live="polite" style="min-width:28px; text-align:center; font-size:15px; font-weight:600; color:#0A1A44; font-variant-numeric:tabular-nums;">{{ p.qty }}</span>
+                    <button type="button" onClick="{{ p.inc }}" aria-label="Sumar" style="width:38px; height:42px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms;" style-hover="background:rgba(10,26,68,0.06)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+                  </div>
+                  <button type="button" onClick="{{ p.add }}" aria-label="{{ p.addLabel }}" style="flex:1; min-width:0; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:44px; padding:0 14px; border:0; border-radius:999px; background:{{ p.btnBg }}; color:#FFFFFF; font-size:15px; font-weight:600; white-space:nowrap; cursor:pointer; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ p.btnHover }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="{{ p.addIcon }}"></path></svg>{{ p.addText }}</button>
+                </div>
+                <a href="NCI%20Producto.dc.html" style="display:inline-flex; align-self:flex-start; align-items:center; gap:6px; min-height:24px; font-size:14px; font-weight:500; color:#0A1A44;" style-hover="color:#D71920">Ver producto<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; flex-direction:column; align-items:flex-start; gap:16px; padding:clamp(32px,4vw,56px); border-radius:24px; background:#F7F6F3;">
+          <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(20px,1.6vw,24px); line-height:1.2; color:#0A1A44;">Productos de {{ cat.name }}</span>
+          <p style="margin:0; max-width:520px; font-size:17px; line-height:26px; color:#3B4256; text-wrap:pretty;">[listado de productos – pendiente confirmar]. Mientras tanto, cotiza directamente con nuestro equipo.</p>
+          <a href="NCI%20Contacto.dc.html" style="display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 24px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:600;" style-hover="background:#B8141A; color:#FFFFFF">Solicitar cotización</a>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+</main>
+
+<dc-import name="NCIFooter" hint-size="100%,480px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const I_ADD = 'M11 6H3M11 12H3M11 18H3M18 9v6M15 12h6';
+const I_OK = 'M20 6L9 17l-5-5';
+class Component extends DCLogic {
+  state = { w: window.innerWidth, sel: [], sort: 'rel', lo: 0, hi: null };
+  trackRef = el => { this.track = el; };
+  rootRef = el => { this.root = el; };
+  skelRef = el => { if (el && el !== this.skel) { this.skel = el; el.animate([{ opacity: 1 }, { opacity: 0.5 }, { opacity: 1 }], { duration: 1400, iterations: Infinity, easing: 'ease-in-out' }); } else if (!el) this.skel = null; };
+  componentDidMount() {
+    this.onResize = () => { const w = document.documentElement.clientWidth || window.innerWidth; if (w !== this.state.w) this.setState({ w }); };
+    this.onQ = () => this.forceUpdate();
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    if (typeof ResizeObserver !== 'undefined') { this.ro = new ResizeObserver(this.onResize); this.ro.observe(document.documentElement); }
+    let rn = 0; this.rpoll = setInterval(() => { this.onResize(); if (++rn > 10) clearInterval(this.rpoll); }, 250);
+    window.addEventListener('nci-quote', this.onQ);
+    this.ready = () => { this.forceUpdate(); requestAnimationFrame(() => { this.unreveal = window.NCI.reveal(this.root); }); };
+    if (window.NCI) this.ready(); else window.addEventListener('nci-ready', this.ready, { once: true });
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); this.ro && this.ro.disconnect(); clearInterval(this.rpoll); window.removeEventListener('nci-quote', this.onQ); this.unreveal && this.unreveal(); this.cv && this.cv.destroy(); }
+  renderVals() {
+    const N = window.NCI, st = this.state, w = document.documentElement.clientWidth || st.w, key = (new URLSearchParams(location.search).get('cat')) || 'seguridad', C = N ? (N.CATS.find(x => x.key === key) || N.CATS[N.CATS.length - 1]) : null, all = N ? N.PRODS.filter(p => p.catKey === (C && C.key)) : [];
+    const TIPOS = [...new Set(all.map(p => p.tipo).filter(Boolean))], hasF = TIPOS.length > 1;
+    if (N && !this._cv) this._cv = N.circuit(this, 'cv');
+    const sidebar = w >= 1024 && (hasF || (all.length > 0 && all.every(p => p.med)));
+    const toggle = t => () => this.setState(s => ({ sel: s.sel.includes(t) ? s.sel.filter(x => x !== t) : [...s.sel, t] }));
+    const opts = TIPOS.map(t => {
+      const on = st.sel.includes(t);
+      return { label: t, n: all.filter(p => p.tipo === t).length, checked: String(on), toggle: toggle(t),
+        pillBg: on ? '#0A1A44' : 'transparent', pillFg: on ? '#FFFFFF' : '#0A1A44', hover: on ? '#060F2B' : 'rgba(10,26,68,0.05)', weight: on ? 500 : 400, dotO: on ? 1 : 0, badgeBg: on ? 'rgba(255,255,255,0.14)' : '#F7F6F3', badgeFg: on ? '#FFFFFF' : '#3B4256',
+        chipBd: on ? '#0A1A44' : 'rgba(10,26,68,0.16)', chipBg: on ? '#0A1A44' : '#FFFFFF', chipFg: on ? '#FFFFFF' : '#0A1A44' };
+    });
+    const MED = N ? N.MED : [], MX = MED.length - 1, hasMed = all.length > 0 && all.every(p => p.med);
+    const lo = st.lo, hi = st.hi == null ? MX : st.hi, medOn = hasMed && (lo > 0 || hi < MX);
+    let list = st.sel.length ? all.filter(p => st.sel.includes(p.tipo)) : all.slice();
+    if (medOn) list = list.filter(p => p.med[0] <= hi && p.med[1] >= lo);
+    const pct = i => (MX ? i / MX * 100 : 0) + '%';
+    const setV = (k, v) => { v = Math.max(0, Math.min(MX, v)); if (k === 'lo') this.setState({ lo: Math.min(v, hi) }); else this.setState({ hi: Math.max(v, lo) }); };
+    const idxAt = x => { const r = this.track.getBoundingClientRect(); return Math.round(Math.max(0, Math.min(1, (x - r.left) / r.width)) * MX); };
+    const medKey = k => e => { const d = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 }[e.key]; if (d) { e.preventDefault(); setV(k, (k === 'lo' ? lo : hi) + d); } };
+    const med = { on: hasMed, max: MX, lo, hi, loPct: pct(lo), hiPct: pct(hi), spanPct: (MX ? (hi - lo) / MX * 100 : 0) + '%',
+      loLabel: MED[lo], hiLabel: MED[hi], minLabel: MED[0], maxLabel: MED[MX], trackRef: this.trackRef,
+      opts: MED.map((label, i) => ({ value: i, label })),
+      setLoV: v => setV('lo', +v), setHiV: v => setV('hi', +v), loKey: medKey('lo'), hiKey: medKey('hi'),
+      down: e => { if (!this.track) return; e.preventDefault(); const i0 = idxAt(e.clientX), k = Math.abs(i0 - lo) <= Math.abs(i0 - hi) && !(i0 > hi) ? 'lo' : 'hi';
+        setV(k, i0); const mv = ev => setV(k, idxAt(ev.clientX)), up = () => { window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); };
+        window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up); } };
+    if (st.sort === 'az') list.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+    if (st.sort === 'za') list.sort((a, b) => b.name.localeCompare(a.name, 'es'));
+    const items = list.map((p, i) => {
+      const inQ = N.quote.has(p.id);
+      return { ...p, tipo: p.tipo || p.cat, hasImg: !!p.img, noImg: !p.img, d: i % 3, slot: 'prod-' + p.id, ph: 'Foto: ' + p.name,
+        add: () => { N.quote.add(p, (this.state.qtys || {})[p.id] || 1); this.setState(s => { const q = { ...(s.qtys || {}) }; delete q[p.id]; return { qtys: q }; }); },
+        qty: (this.state.qtys || {})[p.id] || 1, decO: ((this.state.qtys || {})[p.id] || 1) > 1 ? 1 : 0.35,
+        dec: () => this.setState(s => { const q = { ...(s.qtys || {}) }; q[p.id] = Math.max(1, (q[p.id] || 1) - 1); return { qtys: q }; }),
+        inc: () => this.setState(s => { const q = { ...(s.qtys || {}) }; q[p.id] = (q[p.id] || 1) + 1; return { qtys: q }; }),
+        btnBg: inQ ? '#D71920' : '#0A1A44', btnHover: inQ ? '#B8141A' : '#060F2B', addText: inQ ? 'Agregar más' : 'Agregar',
+        addLabel: inQ ? 'En tu cotización · agregar otra unidad' : 'Agregar a cotización',
+        addIcon: inQ ? I_OK : I_ADD,
+        addBg: inQ ? '#D71920' : '#FFFFFF', addFg: inQ ? '#FFFFFF' : '#0A1A44', addBd: inQ ? '#D71920' : 'rgba(10,26,68,0.2)',
+        addHoverBg: inQ ? '#B8141A' : '#FFFFFF', addHoverFg: inQ ? '#FFFFFF' : '#D71920' };
+    });
+    const cols = w >= 1200 ? 3 : w >= 600 ? 2 : 1;
+    return {
+      loading: !N, skelRef: this.skelRef,
+      rootRef: this.rootRef, cvsRef: this._cv || null,
+      cat: { name: C ? C.name : '', desc: (N && C && N.CAT_DESC[C.key]) || '', hasDesc: !!(N && C && N.CAT_DESC[C.key]), iconW: N && C ? N.ico(C.key, '#FFFFFF') : '' },
+      countLabel: all.length + (all.length === 1 ? ' producto' : ' productos'), isEmpty: !!N && !all.length,
+      sidebar, chipsBar: !sidebar && hasF, layoutCols: sidebar ? '268px minmax(0,1fr)' : 'minmax(0,1fr)',
+      gridCols: 'repeat(' + cols + ', minmax(0,1fr))',
+      opts, items, all: (() => { const on = !st.sel.length; return { checked: String(on), n: all.length, bg: on ? '#0A1A44' : 'transparent', fg: on ? '#FFFFFF' : '#0A1A44', hover: on ? '#060F2B' : 'rgba(10,26,68,0.05)', weight: on ? 500 : 400, dotO: on ? 1 : 0, badgeBg: on ? 'rgba(255,255,255,0.14)' : '#F7F6F3', badgeFg: on ? '#FFFFFF' : '#3B4256' }; })(), shown: items.length, shownLabel: items.length === 1 ? 'producto' : 'productos',
+      activeChips: [...st.sel.map(t => ({ label: t, remove: toggle(t) })), ...(medOn ? [{ label: MED[lo] + ' – ' + MED[hi], remove: () => this.setState({ lo: 0, hi: null }) }] : [])], med,
+      noFilters: !st.sel.length && !medOn, clearO: st.sel.length || medOn ? 1 : 0.4, clear: () => this.setState({ sel: [], lo: 0, hi: null }), clearTipo: () => this.setState({ sel: [] }),
+      sort: st.sort, onSortV: v => this.setState({ sort: v }), sortOpts: [{ value: 'rel', label: 'Relevancia' }, { value: 'az', label: 'Nombre A–Z' }, { value: 'za', label: 'Nombre Z–A' }]
+    };
+  }
+}
+</script>
+</body>
+</html>

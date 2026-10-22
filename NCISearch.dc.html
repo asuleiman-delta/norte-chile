@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div ref="{{ fadeRef }}" onClick="{{ close }}" style="position:fixed; inset:0; z-index:78; background:rgba(10,26,68,0.28); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);"></div>
+  <div ref="{{ panelRef }}" role="dialog" aria-modal="true" aria-label="Buscar productos" data-screen-label="Buscador" style="position:fixed; z-index:79; top:clamp(12px,1.1vw,16px); left:50%; transform:translateX(-50%); width:min(880px, calc(100vw - 24px)); max-height:calc(100vh - 32px); display:flex; flex-direction:column; border-radius:24px; overflow:hidden; background:#FFFFFF; box-shadow:0 48px 96px -24px rgba(6,15,43,0.45); font-family:'Saira',system-ui,sans-serif;">
+    <div style="flex:none; display:flex; align-items:center; gap:12px; height:72px; padding:0 12px 0 24px; border-bottom:1px solid rgba(10,26,68,0.10);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0A1A44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input ref="{{ inputRef }}" type="search" value="{{ q }}" onInput="{{ onInput }}" onKeyDown="{{ onKey }}" placeholder="Busca válvulas, flanges, camlocks…" aria-label="Buscar" autocomplete="off" style="flex:1; min-width:0; height:56px; border:0; outline:none; background:transparent; color:#0A1A44; font:inherit; font-size:clamp(16px,1.25vw,18px);">
+      <sc-if value="{{ showKbd }}" hint-placeholder-val="{{ true }}"><span style="flex:none; display:flex; align-items:center; height:26px; padding:0 8px; border-radius:6px; border:1px solid rgba(10,26,68,0.16); color:#646B7E; font-size:12px; font-weight:600;">ESC</span></sc-if>
+      <button type="button" onClick="{{ close }}" aria-label="Cerrar buscador" style="flex:none; width:44px; height:44px; border-radius:999px; border:0; background:rgba(10,26,68,0.06); color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:rgba(10,26,68,0.12)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <div style="flex:1; min-height:0; overflow-y:auto; padding:20px 16px 24px; display:flex; flex-direction:column; gap:24px;">
+      <sc-if value="{{ hasCats }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <span style="padding:0 8px; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#646B7E;">{{ catsTitle }}</span>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; padding:0 4px;">
+            <sc-for list="{{ cats }}" as="c" hint-placeholder-count="6">
+              <a href="{{ c.href }}" onMouseEnter="{{ c.enter }}" style="display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 16px 0 6px; border-radius:999px; background:{{ c.bg }}; color:{{ c.fg }}; font-size:15px; transition:background 150ms cubic-bezier(0.4,0,0.2,1), color 150ms;">
+                <span style="width:32px; height:32px; border-radius:999px; background:{{ c.iconBg }}; display:flex; align-items:center; justify-content:center;"><img src="{{ c.icon }}" alt="" style="width:18px; height:18px;"></span>
+                <span>{{ c.pre }}<strong style="font-weight:700;">{{ c.mid }}</strong>{{ c.post }}</span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasProds }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <span style="padding:0 8px 4px; font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#646B7E;">Productos</span>
+          <sc-for list="{{ prods }}" as="p" hint-placeholder-count="4">
+            <a href="NCI%20Producto.dc.html" onMouseEnter="{{ p.enter }}" style="display:flex; align-items:center; gap:14px; min-height:64px; padding:8px 16px 8px 8px; border-radius:16px; background:{{ p.bg }}; color:#0A1A44; transition:background 150ms cubic-bezier(0.4,0,0.2,1);">
+              <span style="flex:none; position:relative; width:48px; height:48px; border-radius:12px; overflow:hidden; background:#1F2430;"><img src="{{ p.img }}" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:blur(3px); transform:scale(1.15);"></span>
+              <span style="flex:1; min-width:0; display:flex; flex-direction:column;">
+                <span style="font-size:16px; line-height:22px; color:#0A1A44;">{{ p.pre }}<strong style="font-weight:700;">{{ p.mid }}</strong>{{ p.post }}</span>
+                <span style="font-size:13px; line-height:18px; color:#646B7E;">{{ p.meta }}</span>
+              </span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71920" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none; opacity:{{ p.arrO }}; transform:{{ p.arrT }}; transition:opacity 150ms, transform 300ms cubic-bezier(0.22,1,0.36,1);"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:14px; padding:32px 16px; text-align:center;">
+          <span style="font-stretch:115%; font-weight:500; font-size:20px; line-height:26px; color:#0A1A44;">Sin resultados para “{{ q }}”</span>
+          <p style="margin:0; max-width:420px; font-size:15px; line-height:22px; color:#3B4256; text-wrap:pretty;">Si no lo encuentras en el catálogo, cuéntanos qué necesitas y lo conseguimos.</p>
+          <a href="NCI%20Contacto.dc.html" style="display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 24px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:15px; font-weight:700;" style-hover="background:#B8141A; color:#FFFFFF">Solicitar cotización</a>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;open&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;onClose&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+class Component extends DCLogic {
+  state = { q: '', hi: 0 };
+  panelRef = el => { if (el && el !== this.panel) { this.panel = el; el.animate([{ opacity: 0, transform: 'translate(-50%, -12px)' }, { opacity: 1, transform: 'translate(-50%, 0)' }], { duration: 400, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' }); } else if (!el) this.panel = null; };
+  fadeRef = el => { if (el && el !== this.fade) { this.fade = el; el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'both' }); } else if (!el) this.fade = null; };
+  inputRef = el => { if (el && el !== this.inp) { this.inp = el; setTimeout(() => el.focus(), 40); } else if (!el) this.inp = null; };
+  componentDidMount() {
+    this.onKeyDoc = e => { if (e.key === 'Escape' && this.props.open) this.close(); };
+    this.onReady = () => this.forceUpdate();
+    window.addEventListener('keydown', this.onKeyDoc);
+    if (!window.NCI) window.addEventListener('nci-ready', this.onReady, { once: true });
+  }
+  componentDidUpdate(pp) {
+    if (this.props.open && !pp.open) { this.setState({ q: '', hi: 0 }); document.documentElement.style.overflow = 'hidden'; }
+    if (!this.props.open && pp.open) document.documentElement.style.overflow = '';
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onKeyDoc); window.removeEventListener('nci-ready', this.onReady); document.documentElement.style.overflow = ''; }
+  close() { this.props.onClose && this.props.onClose(); }
+  renderVals() {
+    const N = window.NCI, st = this.state, q = st.q.trim();
+    const norm = s => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const nq = norm(q);
+    const split = s => { const i = nq ? norm(s).indexOf(nq) : -1; return i < 0 ? { pre: s, mid: '', post: '' } : { pre: s.slice(0, i), mid: s.slice(i, i + nq.length), post: s.slice(i + nq.length) }; };
+    const CATS = N ? N.CATS : [], PRODS = N ? N.PRODS : [];
+    const catsRaw = nq ? CATS.filter(c => norm(c.name).includes(nq)).slice(0, 6) : CATS.slice(0, 8);
+    const prodsRaw = nq ? PRODS.filter(p => norm(p.name).includes(nq) || norm(p.tipo).includes(nq) || norm(p.cat).includes(nq)).slice(0, 7) : [];
+    const flat = [...catsRaw.map(c => c.href), ...prodsRaw.map(() => 'NCI%20Producto.dc.html')];
+    const hi = Math.min(st.hi, Math.max(0, flat.length - 1));
+    const cats = catsRaw.map((c, i) => { const on = !!nq && i === hi; return { ...split(c.name), href: c.href, enter: () => this.setState({ hi: i }), icon: N.ico(c.key, on ? '#FFFFFF' : '#0A1A44'), bg: on ? '#0A1A44' : '#F7F6F3', fg: on ? '#FFFFFF' : '#0A1A44', iconBg: on ? 'rgba(255,255,255,0.14)' : '#FFFFFF' }; });
+    const prods = prodsRaw.map((p, j) => { const i = catsRaw.length + j, on = i === hi; return { ...split(p.name), img: p.img || '', meta: p.cat + (p.tipo ? ' · ' + p.tipo : ''), enter: () => this.setState({ hi: i }), bg: on ? '#F7F6F3' : 'transparent', arrO: on ? 1 : 0, arrT: on ? 'none' : 'translateX(-6px)' }; });
+    return {
+      open: !!this.props.open, close: () => this.close(), panelRef: this.panelRef, fadeRef: this.fadeRef, inputRef: this.inputRef,
+      q: st.q, onInput: e => this.setState({ q: e.target.value, hi: 0 }),
+      onKey: e => {
+        const n = flat.length;
+        if (e.key === 'ArrowDown' && n) { e.preventDefault(); this.setState({ hi: (hi + 1) % n }); }
+        else if (e.key === 'ArrowUp' && n) { e.preventDefault(); this.setState({ hi: (hi - 1 + n) % n }); }
+        else if (e.key === 'Enter' && n && nq) { e.preventDefault(); location.href = flat[hi]; }
+      },
+      showKbd: (document.documentElement.clientWidth || 1200) >= 768,
+      cats, prods, hasCats: cats.length > 0, hasProds: prods.length > 0, noResults: !!nq && !cats.length && !prods.length,
+      catsTitle: nq ? 'Categorías' : 'Explora por categoría'
+    };
+  }
+}
+</script>
+</body>
+</html>

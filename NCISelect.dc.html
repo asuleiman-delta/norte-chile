@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div ref="{{ rootRef }}" style="position:relative; display:{{ display }}; width:{{ width }}; min-width:0;">
+  <button type="button" onClick="{{ toggle }}" onKeyDown="{{ onKey }}" aria-haspopup="listbox" aria-expanded="{{ openStr }}" aria-label="{{ ariaLabel }}" style="width:100%; display:flex; align-items:center; gap:8px; height:44px; padding:0 {{ padR }} 0 {{ padL }}; border-radius:{{ radius }}; border:1px solid {{ bd }}; background:#FFFFFF; box-shadow:{{ btnShadow }}; color:#0A1A44; font-size:15px; font-weight:500; text-align:left; cursor:pointer; white-space:nowrap; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="border-color:#0A1A44">
+    <sc-if value="{{ hasPrefix }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px; font-weight:400; color:#646B7E;">{{ prefix }}</span></sc-if>
+    <span style="flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis;">{{ current }}</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none; transform:{{ chev }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M6 9l6 6 6-6"></path></svg>
+  </button>
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <div ref="{{ panelRef }}" role="listbox" aria-label="{{ ariaLabel }}" style="position:absolute; z-index:30; top:calc(100% + 8px); {{ side }}:0; min-width:100%; max-height:320px; overflow-y:auto; display:flex; flex-direction:column; gap:2px; padding:6px; border-radius:16px; background:#FFFFFF; border:1px solid rgba(10,26,68,0.08); box-shadow:0 24px 48px -16px rgba(6,15,43,0.28), 0 2px 6px rgba(6,15,43,0.06);">
+      <sc-for list="{{ items }}" as="o" hint-placeholder-count="3">
+        <button type="button" role="option" aria-selected="{{ o.sel }}" onClick="{{ o.pick }}" onMouseEnter="{{ o.enter }}" style="display:flex; align-items:center; gap:10px; min-height:44px; padding:0 14px 0 12px; border:0; border-radius:999px; background:{{ o.bg }}; color:{{ o.fg }}; font-size:15px; font-weight:{{ o.weight }}; text-align:left; white-space:nowrap; cursor:pointer; transition:background 150ms, color 150ms;">
+          <span style="flex:none; width:6px; height:6px; border-radius:999px; background:#D71920; opacity:{{ o.dotO }};"></span>
+          <span style="flex:1;">{{ o.label }}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none; opacity:{{ o.tickO }};"><path d="M20 6L9 17l-5-5"></path></svg>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:320,&quot;height&quot;:240},&quot;options&quot;:{&quot;editor&quot;:null,&quot;default&quot;:[{&quot;value&quot;:&quot;rel&quot;,&quot;label&quot;:&quot;Relevancia&quot;},{&quot;value&quot;:&quot;az&quot;,&quot;label&quot;:&quot;Nombre A–Z&quot;}],&quot;tsType&quot;:&quot;{value:string,label:string}[]&quot;},&quot;value&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;rel&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onChange&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(v:string)=&gt;void&quot;},&quot;prefix&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Ordenar:&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;pill&quot;,&quot;field&quot;],&quot;default&quot;:&quot;pill&quot;,&quot;tsType&quot;:&quot;'pill'|'field'&quot;},&quot;align&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;right&quot;,&quot;left&quot;],&quot;default&quot;:&quot;right&quot;,&quot;tsType&quot;:&quot;'right'|'left'&quot;},&quot;ariaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { open: false, hi: -1 };
+  rootRef = el => { this.root = el; };
+  panelRef = el => {
+    if (el && el !== this.panel) {
+      this.panel = el;
+      el.animate([{ opacity: 0, transform: 'translateY(-6px) scale(0.98)' }, { opacity: 1, transform: 'none' }], { duration: 200, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'both' });
+      const s = el.querySelector('[aria-selected="true"]'); if (s) el.scrollTop = s.offsetTop - el.clientHeight / 2 + s.clientHeight / 2;
+    } else if (!el) this.panel = null;
+  };
+  componentDidMount() {
+    this.onDoc = e => { if (this.state.open && this.root && !this.root.contains(e.target)) this.setState({ open: false }); };
+    document.addEventListener('pointerdown', this.onDoc);
+  }
+  componentWillUnmount() { document.removeEventListener('pointerdown', this.onDoc); }
+  opts() { return this.props.options || []; }
+  pick(v) { this.setState({ open: false }); this.props.onChange && this.props.onChange(v); }
+  renderVals() {
+    const p = this.props, st = this.state, opts = this.opts(), field = p.variant === 'field';
+    const cur = opts.findIndex(o => String(o.value) === String(p.value));
+    const hi = st.hi >= 0 ? st.hi : cur;
+    const items = opts.map((o, i) => {
+      const sel = i === cur, h = i === hi;
+      return { label: o.label, sel: String(sel), pick: () => this.pick(o.value), enter: () => this.setState({ hi: i }),
+        bg: sel ? '#0A1A44' : h ? 'rgba(10,26,68,0.06)' : 'transparent', fg: sel ? '#FFFFFF' : '#0A1A44',
+        weight: sel ? 500 : 400, dotO: sel ? 1 : 0, tickO: sel ? 1 : 0 };
+    });
+    return {
+      rootRef: this.rootRef, panelRef: this.panelRef, items, open: st.open, openStr: String(st.open),
+      current: cur >= 0 ? opts[cur].label : '', prefix: p.prefix || '', hasPrefix: !!p.prefix, ariaLabel: p.ariaLabel || p.prefix || '',
+      display: field ? 'flex' : 'inline-flex', width: field ? '100%' : 'auto',
+      radius: field ? '8px' : '999px', padL: field ? '14px' : '18px', padR: field ? '12px' : '16px',
+      bd: st.open ? '#0A1A44' : field ? 'rgba(10,26,68,0.12)' : 'rgba(10,26,68,0.16)',
+      btnShadow: field ? '0 1px 2px rgba(10,26,68,0.06)' : 'none',
+      chev: st.open ? 'rotate(180deg)' : 'none', side: p.align === 'left' ? 'left' : 'right',
+      toggle: () => this.setState(s => ({ open: !s.open, hi: -1 })),
+      onKey: e => {
+        const n = opts.length; if (!n) return;
+        if (e.key === 'Escape') { this.setState({ open: false }); return; }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); const d = e.key === 'ArrowDown' ? 1 : -1; this.setState({ open: true, hi: ((hi < 0 ? cur : hi) + d + n) % n }); return; }
+        if ((e.key === 'Enter' || e.key === ' ') && st.open && hi >= 0) { e.preventDefault(); this.pick(opts[hi].value); }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

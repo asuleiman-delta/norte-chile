@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wdth,wght@50..125,100..900&amp;display=swap">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#3B4256;font-family:'Saira',system-ui,sans-serif;font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:#0A1A44;text-decoration:none}
+a:hover{color:#D71920}
+button{font-family:inherit}
+:focus-visible{outline:2px solid #D71920;outline-offset:2px}
+::selection{background:rgba(215,25,32,0.18)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+<script src="./nci-data.js"></script>
+<script src="./nci-circuit.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative; overflow-x:clip; background:#FFFFFF;">
+<dc-import name="NCIHeader" tone="dark" active="nosotros" hint-size="100%,0px"></dc-import>
+
+<main style="position:relative; z-index:1; background:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); margin-bottom:calc(-1 * clamp(32px,3.3vw,48px));">
+
+<section data-screen-label="Encabezado Nosotros" style="position:relative; overflow:hidden; background:radial-gradient(120% 140% at 0% 0%, #1A2C5C 0%, #0D1B3E 45%, #050C24 100%); color:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); padding:clamp(120px,10vw,152px) 0 clamp(56px,5.6vw,88px);">
+  <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
+    <div style="position:absolute; left:-8%; top:50%; transform:translateY(-50%); height:min(50vw, 720px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.30) 0%, rgba(70,120,210,0) 68%);"></div>
+    <div style="position:absolute; right:12%; top:40%; height:min(34vw, 480px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.20) 0%, rgba(215,25,32,0) 68%);"></div>
+  </div>
+  <canvas ref="{{ cvsRef }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none;"></canvas>
+  <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); pointer-events:none;">
+    <div style="display:flex; flex-direction:column; gap:20px; max-width:900px; pointer-events:auto;">
+      <nav aria-label="Ruta" data-hero-fade="0" style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:14px; line-height:20px; color:rgba(255,255,255,0.72);">
+        <a href="index.html" style="color:rgba(255,255,255,0.72);" style-hover="color:#FFFFFF">Inicio</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        <span aria-current="page" style="color:#FFFFFF;">Nosotros</span>
+      </nav>
+      <div data-hero-fade="1" style="display:flex; align-items:center; gap:14px; font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.85);"><span style="width:32px; height:2px; background:#D71920;"></span>La empresa</div>
+      <h1 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(34px,3.9vw,56px); line-height:1.08; letter-spacing:-0.01em;">
+        <span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="0" style="display:block;">Somos</span></span>
+        <span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="1" style="display:block;">Norte Chile Industrial</span></span>
+      </h1>
+      <p data-hero-fade="2" style="margin:0; font-size:clamp(17px,1.3vw,19px); line-height:1.5; font-weight:400; color:rgba(255,255,255,0.85);">Control y Precisión en Cada <span style="box-shadow:inset 0 -0.08em 0 #D71920;">Conexión</span></p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Quiénes somos" style="padding:clamp(56px,6.4vw,96px) 0;">
+  <div style="max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap:clamp(40px,6vw,96px); align-items:center;">
+    <div data-reveal="0" style="position:relative; aspect-ratio:4 / 5; max-height:720px; border-radius:24px; overflow:hidden; background:#0D1838;">
+      <img src="assets/qs-equipo.png" alt="Técnicos de Norte Chile Industrial apretando un flange en terreno" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 35%; display:block;">
+      <span style="position:absolute; left:16px; bottom:16px; display:flex; align-items:center; gap:8px; height:40px; padding:0 16px 0 12px; border-radius:999px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:#FFFFFF; font-size:14px; font-weight:500;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Antofagasta, Chile</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:24px; max-width:620px;">
+      <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Quiénes somos</span>
+      <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44; text-wrap:balance;">Soluciones integrales para la industria</h2>
+      <p data-reveal="2" style="margin:0; font-size:clamp(17px,1.3vw,19px); line-height:1.45; font-weight:300; color:#0A1A44; text-wrap:pretty;">Norte Chile Industrial es una empresa orientada a entregar soluciones integrales para la industria minera, construcción e industrial, especializada en el suministro de válvulas, fitting, cañerías e instrumentación.</p>
+      <p data-reveal="3" style="margin:0; font-size:17px; line-height:27px; color:#3B4256; text-wrap:pretty;">Nacemos con el compromiso de ofrecer productos de alta calidad, tiempos de respuesta rápidos y un servicio cercano a nuestros clientes, entendiendo las exigencias operacionales del sector.</p>
+      <p data-reveal="4" style="margin:0; font-size:17px; line-height:27px; color:#3B4256; text-wrap:pretty;">Como empresa emergente, buscamos posicionarnos como un socio estratégico confiable, entregando respuestas ágiles, asesoría técnica y soluciones adaptadas a los desafíos de cada operación.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Misión, visión y diferenciales" style="position:relative; overflow:hidden; background:#EDF0F5; padding:clamp(56px,6.4vw,96px) 0;">
+  <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
+    <div style="position:absolute; left:-6%; top:12%; height:min(46vw, 640px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(26,44,92,0.30) 0%, rgba(26,44,92,0) 68%);"></div>
+    <div style="position:absolute; left:40%; top:45%; height:min(34vw, 480px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.18) 0%, rgba(215,25,32,0) 68%);"></div>
+    <div style="position:absolute; right:-8%; bottom:0; height:min(44vw, 620px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.32) 0%, rgba(70,120,210,0) 68%);"></div>
+  </div>
+  <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:flex; flex-direction:column; gap:clamp(80px,9vw,128px);">
+
+    <div style="display:flex; flex-direction:column; gap:clamp(40px,4.4vw,64px);">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center;">
+        <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Propósito</span>
+        <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44;">Misión y visión</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:24px;">
+        <div data-reveal="0" style="display:flex; flex-direction:column; gap:28px; padding:clamp(28px,3.3vw,48px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9);">
+          <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg></span>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <h3 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-size:clamp(20px,1.5vw,22px); line-height:1.15; font-weight:500; color:#0A1A44;">Misión</h3>
+            <p style="margin:0; font-size:clamp(16px,1.25vw,18px); line-height:1.5; font-weight:400; color:#3B4256; text-wrap:pretty;">Proveer soluciones eficientes y confiables para la industria minera, asegurando calidad, rapidez y continuidad operacional.</p>
+          </div>
+        </div>
+        <div data-reveal="1" style="display:flex; flex-direction:column; gap:28px; padding:clamp(28px,3.3vw,48px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9);">
+          <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <h3 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-size:clamp(20px,1.5vw,22px); line-height:1.15; font-weight:500; color:#0A1A44;">Visión</h3>
+            <p style="margin:0; font-size:clamp(16px,1.25vw,18px); line-height:1.5; font-weight:400; color:#3B4256; text-wrap:pretty;">Ser un socio estratégico reconocido en minería, destacando por confiabilidad, rapidez y excelencia en el servicio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:clamp(40px,4.4vw,64px);">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center;">
+        <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Diferenciales</span>
+        <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44;">Por qué elegirnos</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:24px;">
+        <div data-reveal="0" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px)">
+          <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
+            <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Productos de calidad certificada</h3>
+            <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Marcas y líneas con certificación, como UL / FM en red contra incendio.</p>
+          </div>
+        </div>
+        <div data-reveal="1" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px)">
+          <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"></circle><path d="M12 9.5v4l2.5 2"></path><path d="M9.5 2.5h5M12 2.5V6"></path></svg></span>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
+            <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Respuesta rápida y cercana</h3>
+            <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Stock y atención local en Antofagasta para cotizar y despachar sin demoras.</p>
+          </div>
+        </div>
+        <div data-reveal="2" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px)">
+          <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg></span>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
+            <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Asesoría técnica especializada</h3>
+            <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Apoyo en selección de materiales, normas y compatibilidad de línea.</p>
+          </div>
+        </div>
+        <div data-reveal="3" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px)">
+          <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.5a4.5 4.5 0 0 0 6.8.5l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.6 1.6"></path><path d="M14 10.5a4.5 4.5 0 0 0-6.8-.5l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.6-1.6"></path></svg></span>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
+            <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Socio confiable para la industria</h3>
+            <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Continuidad de suministro para minería, construcción e industria.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="CTA Nosotros" style="position:relative; overflow:hidden; padding:clamp(64px,6.7vw,96px) 0 calc(clamp(64px,6.7vw,96px) + clamp(32px,3.3vw,48px));">
+  <canvas ref="{{ ctaCvsRef }}" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; display:block; pointer-events:none;"></canvas>
+  <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 60% 70% at 50% 50%, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0) 100%);"></div>
+  <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:flex; flex-direction:column; align-items:center; gap:28px; text-align:center;">
+    <h2 data-reveal="0" style="margin:0; max-width:900px; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(24px,2.6vw,36px); line-height:1.1; letter-spacing:-0.01em; color:#0A1A44; text-wrap:balance;">¿Buscas un proveedor confiable para tu operación?</h2>
+    <div data-reveal="1" style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+      <a href="NCI%20Catalogo.dc.html" style="display:inline-flex; align-items:center; gap:10px; height:46px; padding:0 28px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">Ver catálogo<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="NCI%20Contacto.dc.html" style="display:inline-flex; align-items:center; gap:10px; height:46px; padding:0 28px; border-radius:999px; border:1px solid rgba(10,26,68,0.2); color:#0A1A44; font-size:16px; font-weight:500; transition:background 150ms;" style-hover="background:#F7F6F3; color:#0A1A44">Contáctanos</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<dc-import name="NCIFooter" hint-size="100%,480px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  rootRef = el => { this.root = el; };
+  componentDidMount() {
+    this.ready = () => { this.forceUpdate(); requestAnimationFrame(() => { this.unreveal = window.NCI.reveal(this.root); }); };
+    if (window.NCI) this.ready(); else window.addEventListener('nci-ready', this.ready, { once: true });
+  }
+  componentWillUnmount() { this.unreveal && this.unreveal(); this.cv && this.cv.destroy(); this.cv2 && this.cv2.destroy(); }
+  renderVals() {
+    const N = window.NCI;
+    if (N && !this._cv) this._cv = N.circuit(this, 'cv');
+    if (N && !this._cv2) this._cv2 = N.circuit(this, 'cv2', 'light');
+    return { rootRef: this.rootRef, cvsRef: this._cv || null, ctaCvsRef: this._cv2 || null };
+  }
+}
+</script>
+</body>
+</html>

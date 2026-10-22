@@ -9,6 +9,8 @@
     dark:  { bg: '#060F2B', valveFill: '#0D1B3E', base: 'rgba(140,160,215,0.09)', baseNode: 'rgba(160,178,225,0.20)',
              lit: [232, 44, 52], node: [255, 92, 98], pulse: [255, 80, 86], core: '#FFE9EA', glow: true },
     light: { bg: '#F7F6F3', base: 'rgba(10,26,68,0.07)', baseNode: 'rgba(10,26,68,0.16)',
+             lit: [10, 26, 68], node: [215, 25, 32], pulse: [215, 25, 32], core: '#FFFFFF', glow: false },
+    lightStrong: { bg: '#EDF0F5', base: 'rgba(10,26,68,0.18)', baseNode: 'rgba(10,26,68,0.34)',
              lit: [10, 26, 68], node: [215, 25, 32], pulse: [215, 25, 32], core: '#FFFFFF', glow: false }
   };
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));

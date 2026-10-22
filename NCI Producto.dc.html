@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wdth,wght@50..125,100..900&amp;display=swap">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#3B4256;font-family:'Saira',system-ui,sans-serif;font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:#0A1A44;text-decoration:none}
+a:hover{color:#D71920}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid #D71920;outline-offset:2px}
+::selection{background:rgba(215,25,32,0.18)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+<script src="./nci-data.js"></script>
+<script src="./image-slot.js"></script>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative; overflow-x:clip; background:#FFFFFF;">
+<dc-import name="NCIHeader" tone="light" active="catalogo" wa-lift="{{ barOn }}" hint-size="100%,0px"></dc-import>
+
+<main style="position:relative; z-index:1; background:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); margin-bottom:calc(-1 * clamp(32px,3.3vw,48px));">
+
+<section data-screen-label="Ficha de producto" style="padding:clamp(96px,8.5vw,120px) 0 clamp(56px,5.6vw,88px);">
+  <div style="max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:flex; flex-direction:column; gap:clamp(24px,2.8vw,40px);">
+    <nav aria-label="Ruta" style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:14px; line-height:20px; color:#646B7E;">
+      <a href="index.html" style="color:#646B7E;" style-hover="color:#0A1A44">Inicio</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+      <a href="NCI%20Catalogo.dc.html" style="color:#646B7E;" style-hover="color:#0A1A44">Catálogo</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+      <a href="NCI%20Catalogo.dc.html" style="color:#646B7E;" style-hover="color:#0A1A44">Válvulas</a>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+      <span aria-current="page" style="color:#0A1A44; font-weight:500;">Válvula de Bola</span>
+    </nav>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap:clamp(32px,5.5vw,80px); align-items:start;">
+      <div data-reveal="0" style="display:flex; flex-direction:column; gap:12px; min-width:0;">
+        <div role="region" aria-roledescription="carrusel" aria-label="Galería del producto" tabindex="0" onKeyDown="{{ gKey }}" onPointerDown="{{ gDown }}" onPointerUp="{{ gUp }}" style="position:relative; aspect-ratio:1 / 1; border-radius:24px; overflow:hidden; background:#1F2430; touch-action:pan-y;">
+          <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="1">
+            <img src="{{ g.src }}" alt="{{ g.alt }}" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; transform-origin:{{ g.origin }}; transform:{{ g.tf }}; opacity:{{ g.op }}; transition:opacity 500ms cubic-bezier(0.4,0,0.2,1), transform 700ms cubic-bezier(0.22,1,0.36,1); user-select:none;">
+          </sc-for>
+          <span style="position:absolute; left:16px; bottom:16px; display:flex; align-items:center; gap:8px; height:40px; padding:0 16px 0 12px; border-radius:999px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:#FFFFFF; font-size:14px; font-weight:500;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l7 4-7 4z"></path><path d="M19 8l-7 4 7 4z"></path><path d="M12 12V5M9 5h6M2 12h3M19 12h3"></path></svg>Válvulas</span>
+          <div style="position:absolute; right:16px; bottom:16px; display:flex; align-items:center; gap:8px;">
+            <span style="display:flex; align-items:center; height:44px; padding:0 14px; border-radius:999px; background:rgba(10,26,68,0.55); color:#FFFFFF; font-size:14px; font-weight:500; font-variant-numeric:tabular-nums;">{{ gPos }}</span>
+            <button type="button" onClick="{{ gPrev }}" aria-label="Imagen anterior" style="width:44px; height:44px; border-radius:999px; border:1px solid rgba(255,255,255,0.22); background:rgba(255,255,255,0.16); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms, color 150ms;" style-hover="background:#FFFFFF; color:#0A1A44"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+            <button type="button" onClick="{{ gNext }}" aria-label="Imagen siguiente" style="width:44px; height:44px; border-radius:999px; border:1px solid rgba(255,255,255,0.22); background:rgba(255,255,255,0.16); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms, color 150ms;" style-hover="background:#FFFFFF; color:#0A1A44"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat({{ gCount }}, minmax(0,1fr)); gap:12px;">
+          <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="4">
+            <button type="button" onClick="{{ g.go }}" aria-label="{{ g.label }}" aria-current="{{ g.cur }}" style="position:relative; aspect-ratio:1 / 1; padding:0; border-radius:14px; overflow:hidden; border:0; background:#1F2430; cursor:pointer; box-shadow:{{ g.ring }}; opacity:{{ g.thumbO }}; transition:opacity 150ms, box-shadow 150ms;" style-hover="opacity:1">
+              <img src="{{ g.src }}" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; transform-origin:{{ g.origin }}; transform:{{ g.zoom }};">
+            </button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:24px; padding-top:clamp(0px,1vw,16px);">
+        <div data-reveal="0" style="display:flex; flex-direction:column; gap:14px;">
+          <span style="display:flex; align-items:center; gap:14px; font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;"><span style="width:32px; height:2px; background:#D71920;"></span>Válvulas</span>
+          <h1 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(30px,3.2vw,46px); line-height:1.08; letter-spacing:-0.01em; color:#0A1A44;">Válvula de Bola</h1>
+          <span style="display:flex; align-items:center; gap:10px; font-size:14px; color:#646B7E;">SKU<span style="display:inline-flex; align-items:center; height:28px; padding:0 12px; border-radius:999px; background:#F7F6F3; color:#3B4256; font-variant-numeric:tabular-nums;">[código pendiente]</span></span>
+        </div>
+
+        <dl data-reveal="1" style="margin:0; display:flex; flex-direction:column; border-bottom:1px solid rgba(10,26,68,0.12);">
+          <div style="display:grid; grid-template-columns:minmax(0,140px) minmax(0,1fr); gap:16px; padding:16px 0; border-top:1px solid rgba(10,26,68,0.12);">
+            <dt style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#646B7E; line-height:24px;">Material</dt>
+            <dd style="margin:0; font-size:16px; line-height:24px; color:#0A1A44;">Bronce cromado / Inox. 316 / WCB</dd>
+          </div>
+          <div style="display:grid; grid-template-columns:minmax(0,140px) minmax(0,1fr); gap:16px; padding:16px 0; border-top:1px solid rgba(10,26,68,0.12);">
+            <dt style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#646B7E; line-height:24px;">Presión</dt>
+            <dd style="margin:0; font-size:16px; line-height:24px; color:#0A1A44;">150 – 300 – 400 – 600 – 1000 y 2000 LBS</dd>
+          </div>
+          <div style="display:grid; grid-template-columns:minmax(0,140px) minmax(0,1fr); gap:16px; padding:16px 0; border-top:1px solid rgba(10,26,68,0.12);">
+            <dt style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#646B7E; line-height:24px;">Conexión</dt>
+            <dd style="margin:0; font-size:16px; line-height:24px; color:#0A1A44;">NPT / S.W. / Flanges</dd>
+          </div>
+          <div style="display:grid; grid-template-columns:minmax(0,140px) minmax(0,1fr); gap:16px; padding:16px 0; border-top:1px solid rgba(10,26,68,0.12);">
+            <dt style="font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#646B7E; line-height:24px;">Medida</dt>
+            <dd style="margin:0; font-size:16px; line-height:24px; color:#0A1A44;">½" a 4" (NPT-SW) · ½" a 12" (flangeadas)</dd>
+          </div>
+        </dl>
+
+        <p data-reveal="2" style="margin:0; font-size:clamp(16px,1.25vw,18px); line-height:1.5; font-weight:400; color:#3B4256; text-wrap:pretty;">Válvula de bola para control de flujo en líneas industriales, disponible en distintos materiales y presiones según la aplicación.</p>
+
+        <div data-reveal="3" style="display:flex; flex-direction:column; gap:12px; padding-top:4px;">
+          <div style="display:flex; flex-wrap:wrap; gap:12px;">
+            <div role="group" aria-label="Cantidad" style="flex:none; display:flex; align-items:center; height:46px; padding:0 4px; border-radius:999px; border:1px solid rgba(10,26,68,0.16); background:#FFFFFF;">
+              <button type="button" onClick="{{ dec }}" aria-label="Restar una unidad" style="width:44px; height:44px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer;" style-hover="background:rgba(10,26,68,0.06)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+              <span aria-live="polite" style="min-width:40px; text-align:center; font-size:17px; font-weight:600; color:#0A1A44; font-variant-numeric:tabular-nums;">{{ qty }}</span>
+              <button type="button" onClick="{{ inc }}" aria-label="Sumar una unidad" style="width:44px; height:44px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer;" style-hover="background:rgba(10,26,68,0.06)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+            </div>
+            <button type="button" onClick="{{ add }}" style="flex:1 1 220px; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:46px; padding:0 28px; border:0; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; cursor:pointer; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="{{ addIcon }}"></path></svg>{{ addLabel }}</button>
+          </div>
+          <a href="https://wa.me/" style="display:inline-flex; align-items:center; justify-content:center; gap:10px; height:46px; padding:0 28px; border-radius:999px; border:1px solid rgba(10,26,68,0.16); color:#0A1A44; font-size:16px; font-weight:500; transition:background 150ms, border-color 150ms;" style-hover="background:#F7F6F3; color:#0A1A44; border-color:rgba(10,26,68,0.28)"><svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"></path></svg>Consultar por WhatsApp</a>
+          <span style="display:flex; align-items:center; gap:10px; padding-top:4px; font-size:14px; line-height:21px; color:#646B7E;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>Stock y plazos sujetos a confirmación · Despacho en Antofagasta y región</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Ficha técnica" style="position:relative; overflow:hidden; background:#EDF0F5; padding:clamp(48px,5vw,72px) 0;">
+  <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
+    <div style="position:absolute; right:-6%; top:50%; transform:translateY(-50%); height:min(44vw, 560px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.30) 0%, rgba(70,120,210,0) 68%);"></div>
+    <div style="position:absolute; left:30%; top:50%; transform:translateY(-50%); height:min(30vw, 400px); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.16) 0%, rgba(215,25,32,0) 68%);"></div>
+  </div>
+  <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px);">
+    <div data-reveal="0" style="display:flex; flex-wrap:wrap; align-items:center; gap:24px 40px; padding:clamp(24px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9);">
+      <span style="flex:none; width:64px; height:64px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8M16 13H8M16 17H8"></path></svg></span>
+      <div style="flex:1 1 360px; display:flex; flex-direction:column; gap:6px;">
+        <h2 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(20px,1.5vw,22px); line-height:1.15; color:#0A1A44;">Ficha técnica</h2>
+        <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Dimensiones, normas, materiales y curvas de operación de la válvula de bola en un solo documento.</p>
+      </div>
+      <div style="flex:0 1 auto; display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px;">
+        <span style="font-size:14px; color:#646B7E;">PDF · [archivo pendiente]</span>
+        <a href="#" style="display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 24px; border-radius:999px; background:#0A1A44; color:#FFFFFF; font-size:16px; font-weight:500; white-space:nowrap; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#060F2B; color:#FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 10l5 5 5-5M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path></svg>Descargar ficha técnica</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="Productos relacionados" style="padding:clamp(56px,6.4vw,96px) 0 calc(clamp(56px,6.4vw,96px) + clamp(32px,3.3vw,48px));">
+  <div style="max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px 24px;">
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Misma categoría</span>
+      <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44;">Productos relacionados</h2>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button type="button" onClick="{{ relPrev }}" aria-label="Anterior" style="width:48px; height:48px; border-radius:999px; border:0; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms;" style-hover="background:rgba(10,26,68,0.06)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
+      <button type="button" onClick="{{ relNext }}" aria-label="Siguiente" style="width:48px; height:48px; border-radius:999px; border:0; background:#0A1A44; color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms;" style-hover="background:#D71920"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </div>
+  </div>
+  <div ref="{{ relRef }}" style="margin-top:clamp(32px,3.3vw,48px); display:flex; gap:clamp(12px,1.7vw,24px); overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-left:max(clamp(20px,4.45vw,64px), calc((100% - 1408px) / 2 + clamp(20px,4.45vw,64px))); padding:0 max(clamp(20px,4.45vw,64px), calc((100% - 1408px) / 2 + clamp(20px,4.45vw,64px))) 4px; scrollbar-width:none;">
+    <sc-for list="{{ related }}" as="p" hint-placeholder-count="4">
+      <article data-reveal="{{ p.d }}" style="flex:0 0 {{ relBasis }}; scroll-snap-align:start; display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:#FFFFFF; border:1px solid rgba(10,26,68,0.10); transition:transform 400ms cubic-bezier(0.22,1,0.36,1), box-shadow 400ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-4px); box-shadow:0 24px 48px -24px rgba(10,26,68,0.35)">
+        <a href="NCI%20Producto.dc.html" aria-label="Ver {{ p.name }}" style="position:relative; display:block; aspect-ratio:4 / 3; overflow:hidden; background:#1F2430;">
+          <img src="{{ p.img }}" alt="{{ p.name }} (imagen referencial)" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; filter:blur(14px) saturate(0.85); transform:scale(1.25); transition:transform 500ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:scale(1.33)"><span style="position:absolute; left:12px; bottom:12px; pointer-events:none; display:inline-flex; align-items:center; height:28px; padding:0 12px; border-radius:999px; background:rgba(10,26,68,0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); color:#FFFFFF; font-size:12px; font-weight:500; letter-spacing:0.02em;">Imagen referencial</span>
+        </a>
+        <div style="flex:1; display:flex; flex-direction:column; gap:8px; padding:20px;">
+          <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em; text-wrap:balance;">{{ p.name }}</h3>
+          <span style="font-size:15px; line-height:22px; color:#646B7E;">{{ p.spec }}</span>
+          <div style="margin-top:auto; padding-top:12px; display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; gap:8px;">
+              <div role="group" aria-label="Cantidad" style="flex:none; display:flex; align-items:center; height:44px; border-radius:999px; border:1px solid rgba(10,26,68,0.16); background:#FFFFFF;">
+                <button type="button" onClick="{{ p.dec }}" aria-label="Restar" style="width:38px; height:42px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:{{ p.decO }}; transition:background 150ms;" style-hover="background:rgba(10,26,68,0.06)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+                <span aria-live="polite" style="min-width:28px; text-align:center; font-size:15px; font-weight:600; color:#0A1A44; font-variant-numeric:tabular-nums;">{{ p.qty }}</span>
+                <button type="button" onClick="{{ p.inc }}" aria-label="Sumar" style="width:38px; height:42px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms;" style-hover="background:rgba(10,26,68,0.06)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+              </div>
+              <button type="button" onClick="{{ p.add }}" aria-label="{{ p.addLabel }}" style="flex:1; min-width:0; display:inline-flex; align-items:center; justify-content:center; gap:8px; height:44px; padding:0 14px; border:0; border-radius:999px; background:{{ p.btnBg }}; color:#FFFFFF; font-size:15px; font-weight:600; white-space:nowrap; cursor:pointer; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ p.btnHover }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="{{ p.addIcon }}"></path></svg>{{ p.addText }}</button>
+            </div>
+            <a href="NCI%20Producto.dc.html" style="display:inline-flex; align-self:flex-start; align-items:center; gap:6px; min-height:24px; font-size:14px; font-weight:500; color:#0A1A44;" style-hover="color:#D71920">Ver producto<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+</main>
+
+
+<sc-if value="{{ barOn }}" hint-placeholder-val="{{ false }}">
+  <div ref="{{ barRef }}" data-screen-label="Barra cotizar mobile" style="position:fixed; z-index:58; left:12px; right:12px; bottom:12px; display:flex; align-items:center; gap:8px; padding:8px; border-radius:999px; background:rgba(255,255,255,0.86); backdrop-filter:blur(24px) saturate(1.4); -webkit-backdrop-filter:blur(24px) saturate(1.4); border:1px solid rgba(10,26,68,0.12); box-shadow:0 16px 40px -12px rgba(6,15,43,0.35);">
+    <div role="group" aria-label="Cantidad" style="flex:none; display:flex; align-items:center; height:48px; border-radius:999px; border:1px solid rgba(10,26,68,0.16); background:#FFFFFF;">
+      <button type="button" onClick="{{ dec }}" aria-label="Restar" style="width:44px; height:46px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"></path></svg></button>
+      <span style="min-width:28px; text-align:center; font-size:16px; font-weight:600; color:#0A1A44; font-variant-numeric:tabular-nums;">{{ qty }}</span>
+      <button type="button" onClick="{{ inc }}" aria-label="Sumar" style="width:44px; height:46px; border:0; border-radius:999px; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
+    </div>
+    <button type="button" onClick="{{ add }}" style="flex:1; min-width:0; display:flex; align-items:center; justify-content:center; gap:8px; height:48px; padding:0 16px; border:0; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:15px; font-weight:700; white-space:nowrap; cursor:pointer;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="{{ addIcon }}"></path></svg><span style="overflow:hidden; text-overflow:ellipsis;">{{ addLabel }}</span></button>
+  </div>
+</sc-if>
+<dc-import name="NCIFooter" hint-size="100%,480px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const I_ADD = 'M11 6H3M11 12H3M11 18H3M18 9v6M15 12h6';
+const I_OK = 'M20 6L9 17l-5-5';
+class Component extends DCLogic {
+  state = { w: window.innerWidth, qty: 1, just: false, g: 0, sc: false };
+  barRef = el => { if (el && el !== this.barEl) { this.barEl = el; el.animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }], { duration: 400, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' }); } else if (!el) this.barEl = null; };
+  rootRef = el => { this.root = el; };
+  relRef = el => { this.rel = el; };
+  componentDidMount() {
+    this.onSc = () => { const v = window.scrollY > 520; if (v !== this.state.sc) this.setState({ sc: v }); };
+    window.addEventListener('scroll', this.onSc, { passive: true }); this.onSc();
+    this.onResize = () => { const w = document.documentElement.clientWidth || window.innerWidth; if (w !== this.state.w) this.setState({ w }); };
+    this.onQ = () => this.forceUpdate();
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+    if (typeof ResizeObserver !== 'undefined') { this.ro = new ResizeObserver(this.onResize); this.ro.observe(document.documentElement); }
+    let rn = 0; this.rpoll = setInterval(() => { this.onResize(); if (++rn > 10) clearInterval(this.rpoll); }, 250);
+    window.addEventListener('nci-quote', this.onQ);
+    this.ready = () => { this.forceUpdate(); requestAnimationFrame(() => { this.unreveal = window.NCI.reveal(this.root); }); };
+    if (window.NCI) this.ready(); else window.addEventListener('nci-ready', this.ready, { once: true });
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onSc); window.removeEventListener('resize', this.onResize); this.ro && this.ro.disconnect(); clearInterval(this.rpoll); window.removeEventListener('nci-quote', this.onQ); this.unreveal && this.unreveal(); clearTimeout(this.jt); }
+  renderVals() {
+    const N = window.NCI, st = this.state, w = document.documentElement.clientWidth || st.w;
+    const scroll = dir => () => { const c = this.rel; if (!c) return; const k = c.firstElementChild; c.scrollBy({ left: dir * (k ? k.getBoundingClientRect().width + 24 : c.clientWidth * 0.8), behavior: 'smooth' }); };
+    const related = (N ? N.RELATED : []).map((p, i) => {
+      const inQ = N.quote.has(p.id);
+      return { ...p, d: i, slot: 'rel-' + p.id, ph: 'Foto: ' + p.name, add: () => { N.quote.add(p, (this.state.qtys || {})[p.id] || 1); this.setState(s => { const q = { ...(s.qtys || {}) }; delete q[p.id]; return { qtys: q }; }); },
+        qty: (this.state.qtys || {})[p.id] || 1, decO: ((this.state.qtys || {})[p.id] || 1) > 1 ? 1 : 0.35,
+        dec: () => this.setState(s => { const q = { ...(s.qtys || {}) }; q[p.id] = Math.max(1, (q[p.id] || 1) - 1); return { qtys: q }; }),
+        inc: () => this.setState(s => { const q = { ...(s.qtys || {}) }; q[p.id] = (q[p.id] || 1) + 1; return { qtys: q }; }),
+        btnBg: inQ ? '#D71920' : '#0A1A44', btnHover: inQ ? '#B8141A' : '#060F2B', addText: inQ ? 'Agregar más' : 'Agregar',
+        addLabel: inQ ? 'En tu cotización · agregar otra unidad' : 'Agregar a cotización', addIcon: inQ ? I_OK : I_ADD,
+        addBg: inQ ? '#D71920' : '#FFFFFF', addFg: inQ ? '#FFFFFF' : '#0A1A44', addBd: inQ ? '#D71920' : 'rgba(10,26,68,0.2)',
+        addHoverBg: inQ ? '#B8141A' : '#FFFFFF', addHoverFg: inQ ? '#FFFFFF' : '#D71920' };
+    });
+    const G = [
+      { src: 'assets/valvulas.png', alt: 'Válvula de bola de acero inoxidable con palanca azul', origin: '50% 50%', zoom: 'scale(1)', label: 'Vista general' },
+      { src: 'assets/valvulas.png', alt: 'Detalle del vástago y la palanca', origin: '58% 34%', zoom: 'scale(2)', label: 'Detalle de vástago' },
+      { src: 'assets/valvulas.png', alt: 'Detalle del cuerpo y pernos', origin: '38% 72%', zoom: 'scale(1.7)', label: 'Detalle del cuerpo' },
+      { src: 'assets/valvulas.png', alt: 'Detalle de la conexión', origin: '82% 78%', zoom: 'scale(2.2)', label: 'Detalle de conexión' }
+    ], gi = st.g, gn = G.length, gGo = i => this.setState({ g: (i + gn) % gn });
+    const gallery = G.map((g, i) => ({ ...g, op: i === gi ? 1 : 0, tf: i === gi ? g.zoom : g.zoom.replace(/scale\(([\d.]+)\)/, (m, v) => 'scale(' + (+v * 1.06) + ')'),
+      go: () => gGo(i), cur: i === gi ? 'true' : undefined, thumbO: i === gi ? 1 : 0.6, ring: i === gi ? '0 0 0 2px #FFFFFF, 0 0 0 4px #0A1A44' : 'none' }));
+    return {
+      gallery, gCount: gn, gPos: (gi + 1) + ' / ' + gn, gPrev: () => gGo(gi - 1), gNext: () => gGo(gi + 1),
+      gKey: e => { if (e.key === 'ArrowLeft') gGo(gi - 1); if (e.key === 'ArrowRight') gGo(gi + 1); },
+      gDown: e => { this.gx = e.clientX; }, gUp: e => { if (this.gx == null) return; const dx = e.clientX - this.gx; this.gx = null; if (Math.abs(dx) > 40) gGo(gi + (dx < 0 ? 1 : -1)); },
+      rootRef: this.rootRef, relRef: this.relRef, related,
+      relBasis: w < 600 ? '80%' : w < 1024 ? 'calc((100% - 24px) / 2.2)' : 'calc((min(100vw, 1408px) - 2 * clamp(20px,4.45vw,64px) - 72px) / 4)',
+      relPrev: scroll(-1), relNext: scroll(1),
+      qty: st.qty, barOn: w < 1024 && st.sc, barRef: this.barRef,
+      dec: () => this.setState(s => ({ qty: Math.max(1, s.qty - 1) })),
+      inc: () => this.setState(s => ({ qty: Math.min(999, s.qty + 1) })),
+      addLabel: st.just ? 'Agregado a tu cotización' : 'Agregar a cotización',
+      addIcon: st.just ? I_OK : I_ADD,
+      add: () => { if (!N) return; N.quote.add(N.PRODUCT, st.qty); clearTimeout(this.jt); this.setState({ just: true }); this.jt = setTimeout(() => this.setState({ just: false, qty: 1 }), 1800); }
+    };
+  }
+}
+</script>
+</body>
+</html>

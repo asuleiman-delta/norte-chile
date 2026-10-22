@@ -22,32 +22,34 @@ button{font-family:inherit}
 ::selection{background:rgba(215,25,32,0.18)}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
+<script src="./nci-data.js"></script>
 <script src="./nci-circuit.js"></script>
 </helmet>
 <div ref="{{ rootRef }}" style="position:relative; overflow-x:clip; background:#FFFFFF;">
 
 <!-- HEADER -->
-<header data-screen-label="Header" style="position:fixed; top:clamp(12px,1.1vw,16px); left:clamp(12px,1.7vw,24px); right:clamp(12px,1.7vw,24px); z-index:50; height:clamp(60px,5vw,72px); display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 10px 0 clamp(16px,1.7vw,24px); border-radius:{{ hdr.radius }}; background:{{ hdr.bg }}; backdrop-filter:{{ hdr.blur }}; -webkit-backdrop-filter:{{ hdr.blur }}; box-shadow:{{ hdr.shadow }}; transition:background 300ms cubic-bezier(0.4,0,0.2,1), box-shadow 300ms cubic-bezier(0.4,0,0.2,1), border-radius 300ms cubic-bezier(0.4,0,0.2,1);">
-  <a href="#inicio" aria-label="Norte Chile Industrial — Inicio" style="display:flex; align-items:center; flex-shrink:0;">
-    <img src="{{ hdr.logo }}" alt="Norte Chile Industrial" style="height:clamp(22px,2.1vw,30px); width:auto; display:block;">
+<header data-screen-label="Header" style="position:fixed; top:clamp(12px,1.1vw,16px); left:clamp(12px,1.7vw,24px); right:clamp(12px,1.7vw,24px); z-index:50; height:clamp(56px,4.4vw,64px); display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 10px 0 clamp(16px,1.7vw,24px); border-radius:{{ hdr.radius }}; background:{{ hdr.bg }}; backdrop-filter:{{ hdr.blur }}; -webkit-backdrop-filter:{{ hdr.blur }}; box-shadow:{{ hdr.shadow }}; transition:background 300ms cubic-bezier(0.4,0,0.2,1), box-shadow 300ms cubic-bezier(0.4,0,0.2,1), border-radius 300ms cubic-bezier(0.4,0,0.2,1);">
+  <a href="index.html" aria-label="Norte Chile Industrial — Inicio" style="display:flex; align-items:center; flex-shrink:1; min-width:0;">
+    <img src="{{ hdr.logo }}" alt="Norte Chile Industrial" style="height:{{ sz.logo }}; width:auto; max-width:100%; object-fit:contain; object-position:left center; display:block;">
   </a>
   <sc-if value="{{ isDesktopNav }}" hint-placeholder-val="{{ true }}">
     <nav style="display:flex; align-items:center; gap:2px;">
-      <a href="#inicio" style="display:flex; align-items:center; gap:8px; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; background:{{ hdr.hover }}; font-size:16px; font-weight:500; transition:background 150ms cubic-bezier(0.4,0,0.2,1);"><span style="width:5px; height:5px; border-radius:999px; background:#D71920;"></span>Inicio</a>
+      <a href="index.html" style="display:flex; align-items:center; gap:8px; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; background:{{ hdr.hover }}; font-size:16px; font-weight:500; transition:background 150ms cubic-bezier(0.4,0,0.2,1);"><span style="width:5px; height:5px; border-radius:999px; background:#D71920;"></span>Inicio</a>
       <button type="button" onClick="{{ toggleMega }}" onMouseEnter="{{ openMega }}" aria-expanded="{{ megaOpen }}" style="display:flex; align-items:center; gap:6px; height:44px; padding:12px 20px; border:0; border-radius:999px; cursor:pointer; color:{{ hdr.fg }}; background:{{ hdr.catBg }}; font-size:16px; font-weight:400; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}">Catálogo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ hdr.chev }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M6 9l6 6 6-6"></path></svg></button>
-      <a href="#servicios" onMouseEnter="{{ closeMega }}" style="display:flex; align-items:center; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}; color:{{ hdr.fg }}">Servicios</a>
-      <a href="#nosotros" onMouseEnter="{{ closeMega }}" style="display:flex; align-items:center; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}; color:{{ hdr.fg }}">Nosotros</a>
-      <a href="#contacto" onMouseEnter="{{ closeMega }}" style="display:flex; align-items:center; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}; color:{{ hdr.fg }}">Contacto</a>
+      <a href="NCI%20Servicios.dc.html" onMouseEnter="{{ closeMega }}" style="display:flex; align-items:center; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}; color:{{ hdr.fg }}">Servicios</a>
+      <a href="NCI%20Nosotros.dc.html" onMouseEnter="{{ closeMega }}" style="display:flex; align-items:center; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}; color:{{ hdr.fg }}">Nosotros</a>
+      <a href="NCI%20Contacto.dc.html" onMouseEnter="{{ closeMega }}" style="display:flex; align-items:center; height:44px; padding:12px 20px; border-radius:999px; color:{{ hdr.fg }}; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}; color:{{ hdr.fg }}">Contacto</a>
     </nav>
   </sc-if>
-  <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
-    <a href="#contacto" aria-label="Cotizar, {{ quoteCount }} productos en la lista" style="display:flex; align-items:center; gap:10px; height:48px; padding:0 6px 0 {{ cotizarPad }}; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01" stroke-width="2.5"></path></svg>
+  <div style="display:flex; align-items:center; gap:{{ sz.gap }}; flex-shrink:0;">
+    <sc-if value="{{ searchInBar }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ openSearch }}" aria-label="Buscar productos" title="Buscar (/)" style="width:{{ sz.btn }}; height:{{ sz.btn }}; display:flex; align-items:center; justify-content:center; border:0; border-radius:999px; cursor:pointer; color:{{ hdr.fg }}; background:{{ hdr.burgerBg }}; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hdr.hover }}"><svg width="{{ sz.ico }}" height="{{ sz.ico }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg></button></sc-if>
+    <button type="button" onClick="{{ openQuote }}" aria-label="Cotizar, {{ quoteCount }} productos en la lista" style="display:flex; align-items:center; gap:{{ sz.cGap }}; height:{{ sz.btn }}; padding:0 4px 0 {{ cotizarPad }}; border:0; cursor:pointer; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">
+      <svg width="{{ sz.ico2 }}" height="{{ sz.ico2 }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"></path><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01" stroke-width="2.5"></path></svg>
       <sc-if value="{{ isDesktopNav }}" hint-placeholder-val="{{ true }}"><span>Cotizar</span></sc-if>
-      <span ref="{{ badgeRef }}" style="display:flex; align-items:center; justify-content:center; min-width:36px; height:36px; padding:0 8px; border-radius:999px; background:#FFFFFF; color:#D71920; font-size:15px; font-weight:700; font-variant-numeric:tabular-nums;">{{ quoteCount }}</span>
-    </a>
+      <span ref="{{ badgeRef }}" style="display:flex; align-items:center; justify-content:center; min-width:{{ sz.badge }}; height:{{ sz.badge }}; padding:0 6px; border-radius:999px; background:#FFFFFF; color:#D71920; font-size:{{ sz.badgeFs }}; font-weight:700; font-variant-numeric:tabular-nums;">{{ quoteCount }}</span>
+    </button>
     <sc-if value="{{ isCompact }}" hint-placeholder-val="{{ false }}">
-      <button type="button" onClick="{{ openDrawer }}" aria-label="Abrir menú" style="width:48px; height:48px; display:flex; align-items:center; justify-content:center; border:0; border-radius:999px; cursor:pointer; color:{{ hdr.fg }}; background:{{ hdr.burgerBg }}; backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 8h16M4 16h16"></path></svg></button>
+      <button type="button" onClick="{{ openDrawer }}" aria-label="Abrir menú" style="width:{{ sz.btn }}; height:{{ sz.btn }}; display:flex; align-items:center; justify-content:center; border:0; border-radius:999px; cursor:pointer; color:{{ hdr.fg }}; background:{{ hdr.burgerBg }}; backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%);"><svg width="{{ sz.ico }}" height="{{ sz.ico }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 8h16M4 16h16"></path></svg></button>
     </sc-if>
   </div>
 </header>
@@ -55,12 +57,12 @@ button{font-family:inherit}
 <!-- MEGA MENU -->
 <sc-if value="{{ megaOpen }}" hint-placeholder-val="{{ false }}">
   <div ref="{{ fadeRef }}" onClick="{{ closeMega }}" style="position:fixed; inset:0; z-index:40; background:rgba(10,26,68,0.10); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);"></div>
-  <div ref="{{ panelRef }}" onMouseLeave="{{ closeMega }}" data-screen-label="Mega menú" style="position:fixed; top:88px; left:24px; right:24px; z-index:49; background:#F7F6F3; border-radius:0 0 32px 32px; box-shadow:0 48px 96px -24px rgba(6,15,43,0.35); padding:8px 32px 32px;">
+  <div ref="{{ panelRef }}" onMouseLeave="{{ closeMega }}" data-screen-label="Mega menú" style="position:fixed; top:80px; left:24px; right:24px; z-index:49; background:#F7F6F3; border-radius:0 0 32px 32px; box-shadow:0 48px 96px -24px rgba(6,15,43,0.35); padding:8px 32px 32px;">
     <div style="max-width:1344px; margin:0 auto; border-top:1px solid rgba(10,26,68,0.12); padding-top:28px; display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:48px;">
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
         <sc-for list="{{ megaCards }}" as="m" hint-placeholder-count="2">
-          <a href="#catalogo" onMouseEnter="{{ m.enter }}" onMouseLeave="{{ m.leave }}" style="position:relative; display:block; height:380px; border-radius:16px; overflow:hidden; background:{{ m.bg }}; color:#FFFFFF;">
-            <div style="position:absolute; inset:0; transform:{{ m.imgT }}; transition:transform 500ms cubic-bezier(0.4,0,0.2,1);"><img src="{{ m.src }}" alt="{{ m.ph }}" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
+          <a href="{{ m.href }}" onMouseEnter="{{ m.enter }}" onMouseLeave="{{ m.leave }}" style="position:relative; display:block; height:380px; border-radius:16px; overflow:hidden; background:{{ m.bg }}; color:#FFFFFF;">
+            <div style="position:absolute; inset:0; transform:{{ m.imgT }}; transition:transform 500ms cubic-bezier(0.22,1,0.36,1);"><img src="{{ m.src }}" alt="{{ m.ph }}" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
             <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(6,15,43,0) 40%, rgba(6,15,43,0.85) 100%);"></div>
             <span style="position:absolute; top:16px; right:16px; width:44px; height:44px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:{{ m.btnBg }}; color:{{ m.btnFg }}; transition:background 150ms cubic-bezier(0.4,0,0.2,1), color 150ms;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ m.arrT }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
             <span style="position:absolute; left:24px; bottom:22px; pointer-events:none; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:23px; line-height:36px; letter-spacing:-0.01em;">{{ m.name }}</span>
@@ -71,13 +73,13 @@ button{font-family:inherit}
         <span style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#646B7E; padding-left:8px;">Catálogo</span>
         <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:16px; row-gap:2px;">
           <sc-for list="{{ megaItems }}" as="it" hint-placeholder-count="14">
-            <a href="#catalogo" onMouseEnter="{{ it.enter }}" onMouseLeave="{{ it.leave }}" style="display:flex; align-items:center; gap:14px; height:48px; padding:0 16px 0 8px; border-radius:999px; background:{{ it.bg }}; color:#0A1A44; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);">
+            <a href="{{ it.href }}" onMouseEnter="{{ it.enter }}" onMouseLeave="{{ it.leave }}" style="display:flex; align-items:center; gap:14px; height:48px; padding:0 16px 0 8px; border-radius:999px; background:{{ it.bg }}; color:#0A1A44; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);">
               <span style="width:32px; height:32px; border-radius:999px; background:#EEECE7; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="{{ it.iconN }}" alt="" style="width:18px; height:18px;"></span>
               <span style="flex:1; min-width:0;">{{ it.name }}</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71920" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:{{ it.arrO }}; transform:{{ it.arrT }}; transition:opacity 150ms cubic-bezier(0.4,0,0.2,1), transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
             </a>
           </sc-for>
-          <a href="#catalogo" style="grid-column:1 / -1; display:flex; align-items:center; gap:14px; height:56px; margin-top:8px; padding:0 16px 0 8px; border-top:1px solid rgba(10,26,68,0.12); color:#0A1A44; font-size:16px; font-weight:600;" style-hover="color:#D71920">
+          <a href="NCI%20Catalogo.dc.html" style="grid-column:1 / -1; display:flex; align-items:center; gap:14px; height:56px; margin-top:8px; padding:0 16px 0 8px; border-top:1px solid rgba(10,26,68,0.12); color:#0A1A44; font-size:16px; font-weight:600;" style-hover="color:#D71920">
             <span style="width:32px; height:32px; border-radius:999px; background:#D71920; color:#FFFFFF; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
             Ver catálogo completo
           </a>
@@ -99,21 +101,21 @@ button{font-family:inherit}
     <div style="max-width:860px; display:flex; flex-direction:column; gap:clamp(20px,2vw,28px); pointer-events:auto;">
       <div data-hero-fade="0" style="display:flex; align-items:center; gap:14px; font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:{{ hero.muted }};"><span style="width:32px; height:2px; background:#D71920;"></span>Antofagasta · Región de Antofagasta</div>
       <sc-if value="{{ heroSerif }}" hint-placeholder-val="{{ true }}">
-        <h1 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(36px,4.7vw,68px); line-height:1.12; letter-spacing:-0.01em; color:{{ hero.fg }};">
+        <h1 style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(32px,3.7vw,54px); line-height:1.12; letter-spacing:-0.01em; color:{{ hero.fg }};">
           <span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="0" style="display:block;">Control y Precisión</span></span>
           <span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="1" style="display:block;">en Cada <em style="font-style:normal; color:{{ hero.fg }}; box-shadow:inset 0 -0.08em 0 #D71920;">Conexión</em></span></span>
         </h1>
       </sc-if>
       <sc-if value="{{ heroSans }}" hint-placeholder-val="{{ false }}">
-        <h1 style="margin:0; font-family:'Saira',sans-serif; font-weight:300; font-size:clamp(38px,5vw,72px); line-height:1.06; letter-spacing:-0.02em; color:{{ hero.fg }};">
+        <h1 style="margin:0; font-family:'Saira',sans-serif; font-weight:300; font-size:clamp(32px,3.9vw,56px); line-height:1.06; letter-spacing:-0.02em; color:{{ hero.fg }};">
           <span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="0" style="display:block;">Control y Precisión</span></span>
           <span style="display:block; overflow:hidden; padding-bottom:0.06em;"><span data-hero-line="1" style="display:block;">en Cada Conexión</span></span>
         </h1>
       </sc-if>
-      <p data-hero-fade="1" style="margin:0; max-width:560px; font-size:clamp(18px,1.53vw,22px); line-height:1.4; font-weight:300; color:{{ hero.muted }}; text-wrap:pretty;">Insumos industriales para minería, construcción e industria en Antofagasta y la región.</p>
+      <p data-hero-fade="1" style="margin:0; max-width:560px; font-size:clamp(17px,1.3vw,19px); line-height:1.5; font-weight:400; color:{{ hero.muted }}; text-wrap:pretty;">Insumos industriales para minería, construcción e industria en Antofagasta y la región.</p>
       <div data-hero-fade="2" style="display:flex; flex-wrap:wrap; gap:12px; padding-top:8px;">
-        <a href="#catalogo" style="flex:{{ ctaFlex }}; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:52px; padding:12px 28px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; white-space:nowrap; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">Ver catálogo</a>
-        <a href="#contacto" style="flex:{{ ctaFlex }}; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:52px; padding:12px 28px; border-radius:999px; background:{{ hero.glass }}; border:1px solid {{ hero.glassBd }}; backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:{{ hero.fg }}; font-size:16px; font-weight:400; white-space:nowrap; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hero.glassHover }}">Cotizar ahora</a>
+        <a href="NCI%20Catalogo.dc.html" style="flex:{{ ctaFlex }}; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:46px; padding:12px 28px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; white-space:nowrap; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">Ver catálogo</a>
+        <a href="NCI%20Contacto.dc.html" style="flex:{{ ctaFlex }}; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:46px; padding:12px 28px; border-radius:999px; background:{{ hero.glass }}; border:1px solid {{ hero.glassBd }}; backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:{{ hero.fg }}; font-size:16px; font-weight:400; white-space:nowrap; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:{{ hero.glassHover }}">Cotizar ahora</a>
       </div>
   <sc-if value="{{ heroCar.inline }}" hint-placeholder-val="{{ false }}">
     <div onMouseEnter="{{ heroCar.pause }}" onMouseLeave="{{ heroCar.resume }}" style="position:relative; width:100%; max-width:440px; margin-top:clamp(16px,3vw,32px); display:flex; flex-direction:column; gap:16px; pointer-events:auto;">
@@ -125,9 +127,9 @@ button{font-family:inherit}
         <div style="position:absolute; left:18px; right:18px; bottom:18px; display:flex; align-items:flex-end; justify-content:space-between; gap:12px;">
           <div style="display:flex; flex-direction:column; gap:4px;">
             <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.8);">{{ heroCar.num }}</span>
-            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(22px,1.9vw,28px); line-height:1.15; color:#FFFFFF;">{{ heroCar.name }}</span>
+            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(20px,1.6vw,24px); line-height:1.15; color:#FFFFFF;">{{ heroCar.name }}</span>
           </div>
-          <a href="#contacto" style="flex:none; display:inline-flex; align-items:center; height:40px; padding:0 16px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:14px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">Cotizar</a>
+          <a href="NCI%20Contacto.dc.html" style="flex:none; display:inline-flex; align-items:center; height:40px; padding:0 16px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:14px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">Cotizar</a>
         </div>
       </div>
       <div style="display:flex; align-items:center; gap:12px;">
@@ -153,9 +155,9 @@ button{font-family:inherit}
         <div style="position:absolute; left:18px; right:18px; bottom:18px; display:flex; align-items:flex-end; justify-content:space-between; gap:12px;">
           <div style="display:flex; flex-direction:column; gap:4px;">
             <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.8);">{{ heroCar.num }}</span>
-            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(22px,1.9vw,28px); line-height:1.15; color:#FFFFFF;">{{ heroCar.name }}</span>
+            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(20px,1.6vw,24px); line-height:1.15; color:#FFFFFF;">{{ heroCar.name }}</span>
           </div>
-          <a href="#contacto" style="flex:none; display:inline-flex; align-items:center; height:40px; padding:0 16px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:14px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">Cotizar</a>
+          <a href="NCI%20Contacto.dc.html" style="flex:none; display:inline-flex; align-items:center; height:40px; padding:0 16px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:14px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A; color:#FFFFFF">Cotizar</a>
         </div>
       </div>
       <div style="display:flex; align-items:center; gap:12px;">
@@ -180,26 +182,26 @@ button{font-family:inherit}
 
 <!-- CATEGORÍAS -->
 <section id="catalogo" ref="{{ pinRef }}" data-screen-label="Categorías destacadas" style="position:relative; background:#FFFFFF;">
-<div ref="{{ stickRef }}" style="position:relative; top:0; padding:clamp(64px,8.3vw,120px) 0; overflow:hidden;">
+<div ref="{{ stickRef }}" style="position:relative; top:0; padding:clamp(56px,6.4vw,96px) 0; overflow:hidden;">
   <div style="max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center;">
     <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Catálogo</span>
-    <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(30px,3.6vw,52px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44; text-wrap:balance;">Categorías destacadas</h2>
+    <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44; text-wrap:balance;">Categorías destacadas</h2>
   </div>
   <div ref="{{ carRef }}" onScroll="{{ onCarScroll }}" style="margin-top:clamp(40px,4.4vw,64px); display:flex; gap:clamp(12px,1.7vw,24px); overflow-x:auto; overflow-y:hidden; scroll-snap-type:{{ snapType }}; scroll-padding-left:max(clamp(20px,4.45vw,64px), calc((100% - 1408px) / 2 + clamp(20px,4.45vw,64px))); padding:0 max(clamp(20px,4.45vw,64px), calc((100% - 1408px) / 2 + clamp(20px,4.45vw,64px))); scrollbar-width:none; -webkit-overflow-scrolling:touch;">
     <sc-for list="{{ cats }}" as="c" hint-placeholder-count="4">
-      <a href="#catalogo" data-reveal="{{ c.i }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative; flex:0 0 {{ cardBasis }}; scroll-snap-align:start; aspect-ratio:4 / 5; border-radius:16px; overflow:hidden; background:{{ c.bg }}; color:#FFFFFF;">
-        <div style="position:absolute; inset:0; transform:{{ c.imgT }}; transition:transform 500ms cubic-bezier(0.4,0,0.2,1);"><img src="{{ c.src }}" alt="{{ c.ph }}" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
+      <a href="{{ c.href }}" data-reveal="{{ c.i }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" style="position:relative; flex:0 0 {{ cardBasis }}; scroll-snap-align:start; aspect-ratio:4 / 5; border-radius:16px; overflow:hidden; background:{{ c.bg }}; color:#FFFFFF; transition:transform 400ms cubic-bezier(0.22,1,0.36,1), box-shadow 400ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-4px); box-shadow:0 24px 48px -24px rgba(10,26,68,0.35)">
+        <div style="position:absolute; inset:0; transform:{{ c.imgT }}; transition:transform 500ms cubic-bezier(0.22,1,0.36,1);"><img src="{{ c.src }}" alt="{{ c.ph }}" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
         <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(6,15,43,0.35) 0%, rgba(6,15,43,0) 22%, rgba(6,15,43,0) 50%, rgba(6,15,43,0.88) 100%);"></div>
         <span style="position:absolute; top:clamp(14px,1.4vw,20px); left:clamp(14px,1.4vw,20px); display:flex; align-items:center; gap:8px; height:clamp(34px,2.8vw,40px); padding:0 16px 0 12px; border-radius:999px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); font-size:14px; font-weight:500; pointer-events:none;"><img src="{{ c.iconW }}" alt="" style="width:18px; height:18px;">{{ c.short }}</span>
         <span style="position:absolute; top:clamp(14px,1.4vw,20px); right:clamp(14px,1.4vw,20px); width:clamp(44px,3.1vw,44px); height:44px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:{{ c.btnBg }}; color:{{ c.btnFg }}; pointer-events:none; transition:background 150ms cubic-bezier(0.4,0,0.2,1), color 150ms;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ c.plusR }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M12 5v14M5 12h14"></path></svg></span>
-        <span style="position:absolute; left:clamp(20px,2vw,28px); right:clamp(20px,2vw,28px); bottom:clamp(20px,2vw,28px); pointer-events:none; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:400; font-size:clamp(24px,2.4vw,36px); line-height:1.1; letter-spacing:-0.01em; text-wrap:balance;">{{ c.name }}</span>
+        <span style="position:absolute; left:clamp(20px,2vw,28px); right:clamp(20px,2vw,28px); bottom:clamp(20px,2vw,28px); pointer-events:none; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:400; font-size:clamp(20px,1.6vw,24px); line-height:1.1; letter-spacing:-0.01em; text-wrap:balance;">{{ c.name }}</span>
       </a>
     </sc-for>
   </div>
   <div style="max-width:1408px; margin:0 auto; padding:clamp(24px,2.2vw,32px) clamp(20px,4.45vw,64px) 0; display:flex; flex-direction:column; gap:20px;">
     <div style="position:relative; height:1px; background:rgba(10,26,68,0.14);"><span style="position:absolute; left:0; top:-0.5px; height:2px; width:{{ progW }}; background:#0A1A44; transition:width 150ms linear;"></span></div>
     <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
-      <a href="#catalogo" style="display:inline-flex; align-items:center; gap:10px; min-height:44px; color:#0A1A44; font-size:16px; font-weight:600;" style-hover="color:#D71920">Ver catálogo completo <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="NCI%20Catalogo.dc.html" style="display:inline-flex; align-items:center; gap:10px; min-height:44px; color:#0A1A44; font-size:16px; font-weight:600;" style-hover="color:#D71920">Ver catálogo completo <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
       <div style="display:flex; align-items:center; gap:12px;">
         <button type="button" onClick="{{ carPrev }}" aria-label="Anterior" style="width:48px; height:48px; border-radius:999px; border:0; background:transparent; color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms;" style-hover="background:rgba(10,26,68,0.06)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg></button>
         <button type="button" onClick="{{ carNext }}" aria-label="Siguiente" style="width:48px; height:48px; border-radius:999px; border:0; background:#0A1A44; color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 150ms;" style-hover="background:#D71920"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
@@ -210,7 +212,7 @@ button{font-family:inherit}
 </section>
 
 <!-- QUIÉNES SOMOS -->
-<section id="nosotros" data-screen-label="Quiénes somos" style="position:relative; overflow:hidden; background:#EDF0F5; padding:clamp(64px,8.3vw,120px) 0;">
+<section id="nosotros" data-screen-label="Quiénes somos" style="position:relative; overflow:hidden; background:#EDF0F5; padding:clamp(56px,6.4vw,96px) 0;">
   <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
     <div style="position:absolute; right:-6%; top:50%; transform:translateY(-50%); height:min(44vw, 640px, 100%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.32) 0%, rgba(70,120,210,0) 68%);"></div>
     <div style="position:absolute; left:42%; top:50%; transform:translateY(-50%); height:min(30vw, 440px, 100%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.18) 0%, rgba(215,25,32,0) 68%);"></div>
@@ -218,14 +220,14 @@ button{font-family:inherit}
   <div style="position:relative; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 480px), 1fr)); align-items:center; row-gap:48px;">
     <div style="padding-left:max(clamp(20px,4.45vw,64px), calc((100% - 1280px) / 2)); padding-right:clamp(20px,6vw,96px); display:flex; flex-direction:column; align-items:flex-start; gap:24px;">
       <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Nosotros</span>
-      <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(30px,3.6vw,52px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44;">Quiénes somos</h2>
-      <p data-reveal="2" style="margin:0; max-width:520px; font-size:clamp(18px,1.53vw,22px); line-height:1.4; font-weight:300; color:#3B4256; text-wrap:pretty;">Norte Chile Industrial es una empresa orientada a entregar soluciones integrales para la industria minera, construcción e industrial, especializada en el suministro de válvulas, fitting, cañerías e instrumentación.</p>
-      <a data-reveal="3" href="#nosotros" style="display:inline-flex; align-items:center; gap:10px; height:48px; margin-top:8px; padding:12px 24px; border-radius:999px; background:#0A1A44; color:#FFFFFF; font-size:16px; font-weight:500; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#060F2B; color:#FFFFFF">Conócenos más <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44;">Quiénes somos</h2>
+      <p data-reveal="2" style="margin:0; max-width:520px; font-size:clamp(17px,1.3vw,19px); line-height:1.5; font-weight:400; color:#3B4256; text-wrap:pretty;">Norte Chile Industrial es una empresa orientada a entregar soluciones integrales para la industria minera, construcción e industrial, especializada en el suministro de válvulas, fitting, cañerías e instrumentación.</p>
+      <a data-reveal="3" href="NCI%20Nosotros.dc.html" style="display:inline-flex; align-items:center; gap:10px; height:48px; margin-top:8px; padding:12px 24px; border-radius:999px; background:#0A1A44; color:#FFFFFF; font-size:16px; font-weight:500; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#060F2B; color:#FFFFFF">Conócenos más <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
     </div>
-    <div data-reveal="1" style="margin-left:clamp(20px,0vw,0px); background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(255,255,255,0.8); border-right:0; backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); border-radius:32px 0 0 32px; padding:clamp(12px,1.7vw,24px); height:clamp(440px,46vw,660px); display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); grid-template-rows:1fr 1fr; gap:clamp(8px,1.1vw,16px);">
+    <div data-reveal="1" style="margin-left:clamp(20px,0vw,0px); background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); border-right:0; backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); border-radius:32px 0 0 32px; padding:clamp(12px,1.7vw,24px); height:clamp(440px,46vw,660px); display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); grid-template-rows:1fr 1fr; gap:clamp(8px,1.1vw,16px);">
       <div style="position:relative; grid-row:1 / span 2; border-radius:16px; overflow:hidden; background:linear-gradient(170deg, #8a6a4d 0%, #3d3640 50%, #0d1838 100%);">
         <img src="assets/qs-1c.png" alt="Técnico con EPP en faena" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; ">
-        <span style="position:absolute; left:14px; bottom:14px; display:flex; align-items:center; gap:8px; height:36px; padding:0 14px 0 10px; border-radius:999px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:#FFFFFF; font-size:14px; font-weight:500; pointer-events:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Antofagasta, Chile</span>
+        <span style="position:absolute; left:14px; bottom:14px; display:flex; align-items:center; gap:6px; max-width:calc(100% - 28px); height:32px; padding:0 12px 0 8px; border-radius:999px; background:rgba(10,26,68,0.45); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); color:#FFFFFF; font-size:13px; line-height:1; font-weight:500; white-space:nowrap; pointer-events:none;"><svg width="16" height="16" style="flex:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Antofagasta, Chile</span>
       </div>
       <div style="position:relative; border-radius:16px; overflow:hidden; background:linear-gradient(200deg, #6f5644 0%, #2b2d3f 60%, #0a1532 100%);"><img src="assets/qs-2.jpg" alt="Detalle: válvulas en línea" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
       <div style="position:relative; border-radius:16px; overflow:hidden; background:linear-gradient(150deg, #5a4a42 0%, #1f2740 60%, #081230 100%);"><img src="assets/qs-3.jpg" alt="Bodega / despacho" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
@@ -234,7 +236,7 @@ button{font-family:inherit}
 </section>
 
 <!-- POR QUÉ ELEGIRNOS -->
-<section data-screen-label="Por qué elegirnos" style="position:relative; overflow:hidden; background:#EDF0F5; padding:clamp(64px,8.3vw,120px) 0;">
+<section data-screen-label="Por qué elegirnos" style="position:relative; overflow:hidden; background:#EDF0F5; padding:clamp(56px,6.4vw,96px) 0;">
   <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
     <div style="position:absolute; left:-6%; top:50%; transform:translateY(-50%); height:min(46vw, 640px, 100%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(26,44,92,0.38) 0%, rgba(26,44,92,0) 68%);"></div>
     <div style="position:absolute; left:38%; top:50%; transform:translateY(-50%); height:min(34vw, 480px, 100%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.22) 0%, rgba(215,25,32,0) 68%);"></div>
@@ -243,34 +245,34 @@ button{font-family:inherit}
   <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px);">
     <div style="display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center;">
       <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Diferenciales</span>
-      <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(30px,3.6vw,52px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44;">Por qué elegirnos</h2>
+      <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#0A1A44;">Por qué elegirnos</h2>
     </div>
     <div style="margin-top:clamp(40px,4.4vw,64px); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:24px;">
-      <div data-reveal="0" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(255,255,255,0.8); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
+      <div data-reveal="0" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
         <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg></span>
         <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
-          <h3 style="margin:0; font-size:22px; line-height:28px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Productos de calidad certificada</h3>
+          <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Productos de calidad certificada</h3>
           <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Marcas y líneas con certificación, como UL / FM en red contra incendio.</p>
         </div>
       </div>
-      <div data-reveal="1" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(255,255,255,0.8); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
+      <div data-reveal="1" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
         <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"></circle><path d="M12 9.5v4l2.5 2"></path><path d="M9.5 2.5h5M12 2.5V6"></path></svg></span>
         <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
-          <h3 style="margin:0; font-size:22px; line-height:28px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Respuesta rápida y cercana</h3>
+          <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Respuesta rápida y cercana</h3>
           <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Stock y atención local en Antofagasta para cotizar y despachar sin demoras.</p>
         </div>
       </div>
-      <div data-reveal="2" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(255,255,255,0.8); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
+      <div data-reveal="2" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
         <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg></span>
         <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
-          <h3 style="margin:0; font-size:22px; line-height:28px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Asesoría técnica especializada</h3>
+          <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Asesoría técnica especializada</h3>
           <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Apoyo en selección de materiales, normas y compatibilidad de línea.</p>
         </div>
       </div>
-      <div data-reveal="3" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(255,255,255,0.8); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
+      <div data-reveal="3" style="display:flex; flex-direction:column; gap:20px; min-height:clamp(280px,24vw,340px); padding:clamp(28px,2.8vw,40px); border-radius:24px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); transition:transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms cubic-bezier(0.22,1,0.36,1);" style-hover="transform:translateY(-3px); box-shadow:16px 18px 40px rgba(10,26,68,0.14), -10px -10px 28px rgba(255,255,255,0.78), inset 1px 1px 0 rgba(255,255,255,0.95)">
         <span style="width:60px; height:60px; border-radius:999px; background:linear-gradient(145deg, #1A2C5C, #0A1A44); color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:6px 6px 14px rgba(10,26,68,0.28), -4px -4px 10px rgba(255,255,255,0.85), inset 1px 1px 0 rgba(255,255,255,0.18);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.5a4.5 4.5 0 0 0 6.8.5l3-3a4.5 4.5 0 0 0-6.4-6.4l-1.6 1.6"></path><path d="M14 10.5a4.5 4.5 0 0 0-6.8-.5l-3 3a4.5 4.5 0 0 0 6.4 6.4l1.6-1.6"></path></svg></span>
         <div style="margin-top:auto; display:flex; flex-direction:column; gap:10px;">
-          <h3 style="margin:0; font-size:22px; line-height:28px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Socio confiable para la industria</h3>
+          <h3 style="margin:0; font-size:20px; line-height:26px; font-weight:500; color:#0A1A44; letter-spacing:-0.01em;">Socio confiable para la industria</h3>
           <p style="margin:0; font-size:16px; line-height:24px; color:#3B4256; text-wrap:pretty;">Continuidad de suministro para minería, construcción e industria.</p>
         </div>
       </div>
@@ -279,7 +281,7 @@ button{font-family:inherit}
 </section>
 
 <!-- SERVICIOS -->
-<section id="servicios" data-screen-label="Servicios" style="position:relative; z-index:2; background:radial-gradient(120% 140% at 0% 0%, #1A2C5C 0%, #0D1B3E 45%, #050C24 100%); color:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); padding:clamp(64px,8.3vw,120px) 0;">
+<section id="servicios" data-screen-label="Servicios" style="position:relative; z-index:2; background:radial-gradient(120% 140% at 0% 0%, #1A2C5C 0%, #0D1B3E 45%, #050C24 100%); color:#FFFFFF; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); padding:clamp(56px,6.4vw,96px) 0;">
   <div aria-hidden="true" style="position:absolute; inset:0; overflow:hidden; border-radius:inherit; pointer-events:none;">
     <div style="position:absolute; left:-8%; top:50%; transform:translateY(-50%); height:min(50vw, 720px, 100%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.30) 0%, rgba(70,120,210,0) 68%);"></div>
     <div style="position:absolute; right:8%; top:50%; transform:translateY(-30%); height:min(34vw, 480px, 80%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.22) 0%, rgba(215,25,32,0) 68%);"></div>
@@ -290,30 +292,30 @@ button{font-family:inherit}
     <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:clamp(40px,4.4vw,64px);">
       <div style="flex:1 1 300px; display:flex; flex-direction:column; align-items:flex-start; gap:16px; max-width:420px;">
         <span data-reveal="0" style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#FFFFFF;">Servicios</span>
-        <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(30px,3.6vw,52px); line-height:1.12; letter-spacing:-0.01em; color:#FFFFFF;">Servicios</h2>
-        <p data-reveal="2" style="margin:0; font-size:clamp(18px,1.53vw,22px); line-height:1.4; font-weight:300; color:rgba(255,255,255,0.82);">Conoce los servicios que ofrecemos además de nuestros productos</p>
-      <a data-reveal="3" href="#servicios" style="margin-top:16px; display:inline-flex; align-items:center; gap:10px; height:48px; padding:12px 24px; border-radius:999px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#FFFFFF; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:rgba(255,255,255,0.2); color:#FFFFFF">Ver servicios <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <h2 data-reveal="1" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(28px,3vw,42px); line-height:1.12; letter-spacing:-0.01em; color:#FFFFFF;">Servicios</h2>
+        <p data-reveal="2" style="margin:0; font-size:clamp(17px,1.3vw,19px); line-height:1.5; font-weight:400; color:rgba(255,255,255,0.82);">Conoce los servicios que ofrecemos además de nuestros productos</p>
+      <a data-reveal="3" href="NCI%20Servicios.dc.html" style="margin-top:16px; display:inline-flex; align-items:center; gap:10px; height:48px; padding:12px 24px; border-radius:999px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#FFFFFF; font-size:16px; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:rgba(255,255,255,0.2); color:#FFFFFF">Ver servicios <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
       </div>
     <div style="flex:2 1 560px; display:grid; grid-template-columns:{{ svc.cols }}; gap:16px;">
-      <a data-reveal="0" href="#servicios" onMouseEnter="{{ svc.f.enter }}" onMouseLeave="{{ svc.leave }}" style="grid-row:{{ svc.featRow }}; position:relative; display:block; min-height:clamp(480px,44vw,640px); border-radius:16px; overflow:hidden; background:linear-gradient(165deg, #7d6149 0%, #3b3440 45%, #0d1838 100%); color:#FFFFFF;">
-        <div style="position:absolute; inset:0; transform:{{ svc.f.imgT }}; transition:transform 500ms cubic-bezier(0.4,0,0.2,1);"><img src="assets/qs-1.png" alt="Foto: taller de maestranza" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
+      <a data-reveal="0" href="NCI%20Servicios.dc.html" onMouseEnter="{{ svc.f.enter }}" onMouseLeave="{{ svc.leave }}" style="grid-row:{{ svc.featRow }}; position:relative; display:block; min-height:clamp(480px,44vw,640px); border-radius:16px; overflow:hidden; background:linear-gradient(165deg, #7d6149 0%, #3b3440 45%, #0d1838 100%); color:#FFFFFF;">
+        <div style="position:absolute; inset:0; transform:{{ svc.f.imgT }}; transition:transform 500ms cubic-bezier(0.22,1,0.36,1);"><img src="assets/qs-1.png" alt="Foto: taller de maestranza" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
         <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(6,15,43,0.2) 0%, rgba(6,15,43,0) 30%, rgba(6,15,43,0.92) 100%);"></div>
         <span style="position:absolute; top:16px; left:16px; display:flex; align-items:center; gap:8px; height:36px; padding:0 14px 0 10px; border-radius:999px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); font-size:14px; font-weight:500; pointer-events:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg>Maestranza</span>
         <div style="position:absolute; left:28px; right:28px; bottom:28px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; pointer-events:none;">
           <div style="display:flex; flex-direction:column; gap:10px;">
-            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(24px,2.4vw,34px); line-height:1.12; letter-spacing:-0.01em;">Servicio de Maestranza</span>
+            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(20px,1.6vw,24px); line-height:1.12; letter-spacing:-0.01em;">Servicio de Maestranza</span>
             <span style="font-size:16px; line-height:24px; color:rgba(255,255,255,0.78); text-wrap:pretty;">Trabajos de maestranza: fabricación y reparación de piezas metálicas a medida para tu operación.</span>
           </div>
           <span style="flex-shrink:0; width:48px; height:48px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:{{ svc.f.btnBg }}; color:{{ svc.f.btnFg }}; transition:background 150ms cubic-bezier(0.4,0,0.2,1), color 150ms;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ svc.f.arrT }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
         </div>
       </a>
-      <a data-reveal="1" href="#servicios" onMouseEnter="{{ svc.p.enter }}" onMouseLeave="{{ svc.leave }}" style="grid-row:{{ svc.featRow }}; position:relative; display:block; min-height:clamp(480px,44vw,640px); border-radius:16px; overflow:hidden; background:linear-gradient(165deg, #7d6149 0%, #3b3440 45%, #0d1838 100%); color:#FFFFFF;">
-        <div style="position:absolute; inset:0; transform:{{ svc.p.imgT }}; transition:transform 500ms cubic-bezier(0.4,0,0.2,1);"><img src="assets/piping.png" alt="Técnico apretando flange en línea de cañería" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
+      <a data-reveal="1" href="NCI%20Servicios.dc.html" onMouseEnter="{{ svc.p.enter }}" onMouseLeave="{{ svc.leave }}" style="grid-row:{{ svc.featRow }}; position:relative; display:block; min-height:clamp(480px,44vw,640px); border-radius:16px; overflow:hidden; background:linear-gradient(165deg, #7d6149 0%, #3b3440 45%, #0d1838 100%); color:#FFFFFF;">
+        <div style="position:absolute; inset:0; transform:{{ svc.p.imgT }}; transition:transform 500ms cubic-bezier(0.22,1,0.36,1);"><img src="assets/piping.png" alt="Técnico apretando flange en línea de cañería" style="position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; "></div>
         <div style="position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(6,15,43,0.2) 0%, rgba(6,15,43,0) 30%, rgba(6,15,43,0.92) 100%);"></div>
         <span style="position:absolute; top:16px; left:16px; display:flex; align-items:center; gap:8px; height:36px; padding:0 14px 0 10px; border-radius:999px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.22); backdrop-filter:blur(20px) saturate(160%); -webkit-backdrop-filter:blur(20px) saturate(160%); font-size:14px; font-weight:500; pointer-events:none;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"></path></svg>Piping</span>
         <div style="position:absolute; left:28px; right:28px; bottom:28px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; pointer-events:none;">
           <div style="display:flex; flex-direction:column; gap:10px;">
-            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(24px,2.4vw,34px); line-height:1.12; letter-spacing:-0.01em;">Fabricación de piping</span>
+            <span style="font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(20px,1.6vw,24px); line-height:1.12; letter-spacing:-0.01em;">Fabricación de piping</span>
             <span style="font-size:16px; line-height:24px; color:rgba(255,255,255,0.78); text-wrap:pretty;">Fabricación de piping: armado de líneas de cañería según tus planos y especificaciones.</span>
           </div>
           <span style="flex-shrink:0; width:48px; height:48px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:{{ svc.p.btnBg }}; color:{{ svc.p.btnFg }}; transition:background 150ms cubic-bezier(0.4,0,0.2,1), color 150ms;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ svc.p.arrT }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
@@ -325,7 +327,7 @@ button{font-family:inherit}
 </section>
 
 <!-- CTA FINAL -->
-<section id="contacto" data-screen-label="CTA final" style="position:relative; z-index:1; overflow:hidden; margin-top:calc(-1 * clamp(32px,3.3vw,48px)); background:#EDF0F5; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); padding:calc(clamp(64px,8.3vw,120px) + clamp(32px,3.3vw,48px)) 0 clamp(64px,8.3vw,120px);">
+<section id="contacto" data-screen-label="CTA final" style="position:relative; z-index:1; overflow:hidden; margin-top:calc(-1 * clamp(32px,3.3vw,48px)); background:#EDF0F5; border-radius:0 0 clamp(32px,3.3vw,48px) clamp(32px,3.3vw,48px); padding:calc(clamp(56px,6.4vw,96px) + clamp(32px,3.3vw,48px)) 0 calc(clamp(56px,6.4vw,96px) + clamp(32px,3.3vw,48px));">
   <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
     <div style="position:absolute; right:-4%; top:50%; transform:translateY(-50%); height:min(44vw, 620px, 100%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(70,120,210,0.34) 0%, rgba(70,120,210,0) 68%);"></div>
     <div style="position:absolute; right:26%; top:50%; transform:translateY(-50%); height:min(30vw, 420px, 100%); aspect-ratio:1 / 1; border-radius:50%; background:radial-gradient(circle, rgba(215,25,32,0.20) 0%, rgba(215,25,32,0) 68%);"></div>
@@ -333,14 +335,14 @@ button{font-family:inherit}
   </div>
   <div style="position:relative; max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap:clamp(40px,5.5vw,80px); align-items:center;">
     <div style="display:flex; flex-direction:column; align-items:flex-start; gap:24px;">
-      <h2 data-reveal="0" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(34px,4.4vw,64px); line-height:1.1; letter-spacing:-0.01em; color:#0A1A44; text-wrap:balance;">¿Necesitas cotizar? <em style="font-style:italic;">Escríbenos</em></h2>
-      <p data-reveal="1" style="margin:0; font-size:clamp(18px,1.53vw,22px); line-height:1.4; font-weight:300; color:#3B4256;">Respondemos cotizaciones en horario hábil, Antofagasta.</p>
+      <h2 data-reveal="0" style="margin:0; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(26px,2.8vw,40px); line-height:1.1; letter-spacing:-0.01em; color:#0A1A44; text-wrap:balance;">¿Necesitas cotizar? <em style="font-style:italic;">Escríbenos</em></h2>
+      <p data-reveal="1" style="margin:0; font-size:clamp(17px,1.3vw,19px); line-height:1.5; font-weight:400; color:#3B4256;">Respondemos cotizaciones en horario hábil, Antofagasta.</p>
       <div data-reveal="2" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px; padding-top:8px;">
-        <a href="https://wa.me/" style="display:inline-flex; align-items:center; gap:10px; height:52px; padding:12px 28px 12px 22px; border-radius:999px; background:#25D366; color:#06301A; font-size:16px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#1FBE5B; color:#06301A"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"></path></svg>WhatsApp</a>
+        <a href="https://wa.me/" style="display:inline-flex; align-items:center; gap:10px; height:46px; padding:12px 28px 12px 22px; border-radius:999px; background:#25D366; color:#06301A; font-size:16px; font-weight:700; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#1FBE5B; color:#06301A"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41z"></path></svg>WhatsApp</a>
         <a href="#form" style="display:inline-flex; align-items:center; gap:8px; min-height:44px; color:#0A1A44; font-size:16px; font-weight:500; border-bottom:1px solid rgba(10,26,68,0.24);" style-hover="color:#D71920">Ir al formulario de contacto</a>
       </div>
     </div>
-    <form id="form" ref="{{ formRef }}" data-reveal="1" onSubmit="{{ onSubmit }}" style="border-radius:32px; padding:clamp(24px,2.8vw,40px); background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(255,255,255,0.8); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap:16px;">
+    <form id="form" ref="{{ formRef }}" data-reveal="1" onSubmit="{{ onSubmit }}" style="border-radius:32px; padding:clamp(24px,2.8vw,40px); background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.66)); border:1px solid rgba(10,26,68,0.24); backdrop-filter:blur(24px) saturate(160%); -webkit-backdrop-filter:blur(24px) saturate(160%); box-shadow:14px 14px 36px rgba(10,26,68,0.12), -10px -10px 28px rgba(255,255,255,0.75), inset 1px 1px 0 rgba(255,255,255,0.9); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap:16px;">
       <sc-if value="{{ formSent }}" hint-placeholder-val="{{ false }}">
         <div style="grid-column:1 / -1; min-height:480px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; text-align:center;">
           <span style="width:64px; height:64px; border-radius:999px; background:#0A1A44; color:#FFFFFF; display:flex; align-items:center; justify-content:center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
@@ -353,19 +355,19 @@ button{font-family:inherit}
       <div style="grid-column:1 / -1; display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding-bottom:8px; border-bottom:1px solid rgba(10,26,68,0.08);">
         <div style="display:flex; flex-direction:column; gap:6px;">
           <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#D71920;">Solicitud de cotización</span>
-          <h3 style="margin:0 0 12px; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(22px,1.8vw,26px); line-height:1.2; color:#0A1A44;">Cuéntanos qué necesitas</h3>
+          <h3 style="margin:0 0 12px; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:clamp(20px,1.5vw,22px); line-height:1.2; color:#0A1A44;">Cuéntanos qué necesitas</h3>
         </div>
       </div>
       </sc-if>
       <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
-      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Nombre<input type="text" name="nombre" autocomplete="name" placeholder="Nombre y apellido" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.7); background:rgba(237,240,245,0.7); box-shadow:inset 3px 3px 8px rgba(10,26,68,0.08), inset -3px -3px 8px rgba(255,255,255,0.8); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
-      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Empresa<input type="text" name="empresa" autocomplete="organization" placeholder="Minera, constructora…" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.7); background:rgba(237,240,245,0.7); box-shadow:inset 3px 3px 8px rgba(10,26,68,0.08), inset -3px -3px 8px rgba(255,255,255,0.8); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
-      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Correo<input type="email" name="correo" autocomplete="email" placeholder="nombre@empresa.cl" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.7); background:rgba(237,240,245,0.7); box-shadow:inset 3px 3px 8px rgba(10,26,68,0.08), inset -3px -3px 8px rgba(255,255,255,0.8); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
-      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Teléfono<input type="tel" name="telefono" autocomplete="tel" placeholder="+56 9 1234 5678" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.7); background:rgba(237,240,245,0.7); box-shadow:inset 3px 3px 8px rgba(10,26,68,0.08), inset -3px -3px 8px rgba(255,255,255,0.8); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
-      <label style="grid-column:1 / -1; display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Mensaje<textarea name="mensaje" rows="4" placeholder="Ej: 20 válvulas de bola 2&quot; acero inoxidable, entrega en faena" style="padding:14px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.7); background:rgba(237,240,245,0.7); box-shadow:inset 3px 3px 8px rgba(10,26,68,0.08), inset -3px -3px 8px rgba(255,255,255,0.8); font:inherit; font-size:16px; line-height:24px; font-weight:400; color:#0A1A44; outline:none; resize:vertical; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></textarea></label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Nombre<input type="text" name="nombre" autocomplete="name" placeholder="Nombre y apellido" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(10,26,68,0.12); background:#FFFFFF; box-shadow:0 1px 2px rgba(10,26,68,0.06); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Empresa<input type="text" name="empresa" autocomplete="organization" placeholder="Minera, constructora…" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(10,26,68,0.12); background:#FFFFFF; box-shadow:0 1px 2px rgba(10,26,68,0.06); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Correo<input type="email" name="correo" autocomplete="email" placeholder="nombre@empresa.cl" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(10,26,68,0.12); background:#FFFFFF; box-shadow:0 1px 2px rgba(10,26,68,0.06); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
+      <label style="display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Teléfono<input type="tel" name="telefono" autocomplete="tel" placeholder="+56 9 1234 5678" style="height:48px; padding:0 16px; border-radius:8px; border:1px solid rgba(10,26,68,0.12); background:#FFFFFF; box-shadow:0 1px 2px rgba(10,26,68,0.06); font:inherit; font-size:16px; font-weight:400; color:#0A1A44; outline:none; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></label>
+      <label style="grid-column:1 / -1; display:flex; flex-direction:column; gap:8px; font-size:14px; line-height:21px; font-weight:500; color:#0A1A44;">Mensaje<textarea name="mensaje" rows="4" placeholder="Ej: 20 válvulas de bola 2&quot; acero inoxidable, entrega en faena" style="padding:14px 16px; border-radius:8px; border:1px solid rgba(10,26,68,0.12); background:#FFFFFF; box-shadow:0 1px 2px rgba(10,26,68,0.06); font:inherit; font-size:16px; line-height:24px; font-weight:400; color:#0A1A44; outline:none; resize:vertical; transition:border-color 150ms cubic-bezier(0.4,0,0.2,1), background 150ms;" style-focus="border-color:#0A1A44; background:#FFFFFF"></textarea></label>
       <div style="grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 16px; padding-top:8px;">
         <span style="display:flex; align-items:center; gap:8px; font-size:14px; line-height:21px; color:#646B7E;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>{{ formNote }}</span>
-        <button type="submit" style="flex:{{ ctaFlex }}; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:52px; padding:12px 28px; border:0; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; cursor:pointer; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A">Enviar solicitud<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+        <button type="submit" style="flex:{{ ctaFlex }}; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:46px; padding:12px 28px; border:0; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700; cursor:pointer; transition:background 150ms cubic-bezier(0.4,0,0.2,1);" style-hover="background:#B8141A">Enviar solicitud<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
       </div>
       </sc-if>
     </form>
@@ -373,7 +375,7 @@ button{font-family:inherit}
 </section>
 
 <!-- FOOTER -->
-<footer data-screen-label="Footer" style="margin-top:calc(-1 * clamp(32px,3.3vw,48px)); background:radial-gradient(120% 140% at 0% 0%, #1A2C5C 0%, #0D1B3E 45%, #050C24 100%); color:#E6EAF4; padding:calc(clamp(56px,6.7vw,96px) + clamp(32px,3.3vw,48px)) 0 clamp(96px,7vw,40px);">
+<footer data-screen-label="Footer" style="margin-top:calc(-1 * clamp(32px,3.3vw,48px)); background:radial-gradient(120% 140% at 0% 0%, #1A2C5C 0%, #0D1B3E 45%, #050C24 100%); color:#E6EAF4; padding:calc(clamp(48px,5vw,80px) + clamp(32px,3.3vw,48px)) 0 clamp(96px,7vw,40px);">
   <div style="max-width:1408px; margin:0 auto; padding:0 clamp(20px,4.45vw,64px);">
     <div style="display:flex; flex-wrap:wrap; gap:48px 64px;">
       <div style="flex:1 1 360px; display:flex; flex-direction:column; gap:24px; max-width:480px;">
@@ -391,21 +393,20 @@ button{font-family:inherit}
         <div style="display:flex; flex-direction:column; gap:14px;">
           <span style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#8E9BBE;">Catálogo</span>
           <sc-for list="{{ footCats }}" as="f" hint-placeholder-count="6">
-            <a href="#catalogo" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">{{ f.name }}</a>
+            <a href="NCI%20Catalogo.dc.html" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">{{ f.name }}</a>
           </sc-for>
         </div>
         <div style="display:flex; flex-direction:column; gap:14px;">
           <span style="font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#8E9BBE;">Empresa</span>
-          <a href="#inicio" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Inicio</a>
-          <a href="#nosotros" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Nosotros</a>
-          <a href="#servicios" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Servicios</a>
-          <a href="#contacto" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Contacto</a>
+          <a href="index.html" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Inicio</a>
+          <a href="NCI%20Nosotros.dc.html" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Nosotros</a>
+          <a href="NCI%20Servicios.dc.html" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Servicios</a>
+          <a href="NCI%20Contacto.dc.html" style="font-size:16px; line-height:24px; color:#E6EAF4;" style-hover="color:#FFFFFF">Contacto</a>
         </div>
       </div>
     </div>
     <div style="margin-top:clamp(48px,5.5vw,80px); padding-top:24px; border-top:1px solid rgba(230,234,244,0.12); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 32px; font-size:14px; line-height:21px; color:#A9B3CC;">
       <span>© 2026 Norte Chile Industrial · Antofagasta, Chile</span>
-      <a href="#" style="color:#A9B3CC;" style-hover="color:#FFFFFF">Política de Privacidad y Términos de Uso</a>
       <span>Desarrollado por <a href="https://deltadigital.cl" target="_blank" rel="noopener" style="color:#A9B3CC; text-decoration:underline; text-underline-offset:3px;" style-hover="color:#FFFFFF">Delta Digital®</a> · 2026</span>
     </div>
   </div>
@@ -427,28 +428,32 @@ button{font-family:inherit}
       <button type="button" onClick="{{ closeDrawer }}" aria-label="Cerrar menú" style="width:48px; height:48px; border-radius:999px; border:0; background:rgba(10,26,68,0.06); color:#0A1A44; display:flex; align-items:center; justify-content:center; cursor:pointer;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
     </div>
     <nav style="flex:1; overflow-y:auto; padding:8px 20px 24px;">
-      <a href="#inicio" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:27px; letter-spacing:-0.02em; color:#0A1A44;"><span style="width:6px; height:6px; border-radius:999px; background:#D71920;"></span>Inicio</a>
-      <button type="button" onClick="{{ toggleAcc }}" aria-expanded="{{ accOpen }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; min-height:64px; padding:0; border:0; background:transparent; cursor:pointer; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:27px; letter-spacing:-0.02em; color:#0A1A44; border-bottom:{{ accBorder }};">Catálogo<span style="width:44px; height:44px; border-radius:999px; background:rgba(10,26,68,0.06); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ accChev }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M6 9l6 6 6-6"></path></svg></span></button>
+      <button type="button" onClick="{{ openSearch }}" style="width:100%; display:flex; align-items:center; gap:12px; height:46px; margin:12px 0 8px; padding:0 18px; border-radius:999px; border:1px solid rgba(10,26,68,0.16); background:#FFFFFF; color:#646B7E; font-size:16px; text-align:left; cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A1A44" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Buscar productos…</button>
+      <a href="index.html" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:10px; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:24px; letter-spacing:-0.02em; color:#0A1A44;"><span style="width:6px; height:6px; border-radius:999px; background:#D71920;"></span>Inicio</a>
+      <button type="button" onClick="{{ toggleAcc }}" aria-expanded="{{ accOpen }}" style="width:100%; display:flex; align-items:center; justify-content:space-between; min-height:64px; padding:0; border:0; background:transparent; cursor:pointer; font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:24px; letter-spacing:-0.02em; color:#0A1A44; border-bottom:{{ accBorder }};">Catálogo<span style="width:44px; height:44px; border-radius:999px; background:rgba(10,26,68,0.06); display:flex; align-items:center; justify-content:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ accChev }}; transition:transform 300ms cubic-bezier(0.4,0,0.2,1);"><path d="M6 9l6 6 6-6"></path></svg></span></button>
       <sc-if value="{{ accOpen }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex; flex-direction:column; padding:4px 0 16px; border-bottom:1px solid rgba(10,26,68,0.12);">
           <sc-for list="{{ megaItems }}" as="it" hint-placeholder-count="14">
-            <a href="#catalogo" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:14px; min-height:48px; color:#0A1A44; font-size:16px;">
+            <a href="{{ it.href }}" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:14px; min-height:48px; color:#0A1A44; font-size:16px;">
               <span style="width:32px; height:32px; border-radius:999px; background:#EEECE7; display:flex; align-items:center; justify-content:center; flex-shrink:0;"><img src="{{ it.iconN }}" alt="" style="width:18px; height:18px;"></span>{{ it.name }}
             </a>
           </sc-for>
-          <a href="#catalogo" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:14px; min-height:52px; color:#0A1A44; font-size:16px; font-weight:600;"><span style="width:32px; height:32px; border-radius:999px; background:#D71920; color:#FFFFFF; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Ver catálogo completo</a>
+          <a href="NCI%20Catalogo.dc.html" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; gap:14px; min-height:46px; color:#0A1A44; font-size:16px; font-weight:600;"><span style="width:32px; height:32px; border-radius:999px; background:#D71920; color:#FFFFFF; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>Ver catálogo completo</a>
         </div>
       </sc-if>
-      <a href="#servicios" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:27px; letter-spacing:-0.02em; color:#0A1A44;">Servicios</a>
-      <a href="#nosotros" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:27px; letter-spacing:-0.02em; color:#0A1A44;">Nosotros</a>
-      <a href="#contacto" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:27px; letter-spacing:-0.02em; color:#0A1A44;">Contacto</a>
+      <a href="NCI%20Servicios.dc.html" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:24px; letter-spacing:-0.02em; color:#0A1A44;">Servicios</a>
+      <a href="NCI%20Nosotros.dc.html" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:24px; letter-spacing:-0.02em; color:#0A1A44;">Nosotros</a>
+      <a href="NCI%20Contacto.dc.html" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; min-height:64px; border-bottom:1px solid rgba(10,26,68,0.12); font-family:'Saira',sans-serif; font-stretch:115%; font-weight:500; font-size:24px; letter-spacing:-0.02em; color:#0A1A44;">Contacto</a>
     </nav>
     <div style="flex-shrink:0; padding:16px 20px 24px; display:flex; flex-direction:column; gap:10px; background:#F7F6F3; border-top:1px solid rgba(10,26,68,0.12);">
-      <a href="#contacto" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; justify-content:center; gap:10px; height:52px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700;">Cotizar <span style="display:flex; align-items:center; justify-content:center; min-width:30px; height:30px; padding:0 6px; border-radius:999px; background:#FFFFFF; color:#D71920; font-size:14px;">{{ quoteCount }}</span></a>
-      <a href="https://wa.me/" style="display:flex; align-items:center; justify-content:center; gap:10px; height:52px; border-radius:999px; background:#25D366; color:#06301A; font-size:16px; font-weight:700;">WhatsApp</a>
+      <a href="NCI%20Cotizacion.dc.html" onClick="{{ closeDrawer }}" style="display:flex; align-items:center; justify-content:center; gap:10px; height:46px; border-radius:999px; background:#D71920; color:#FFFFFF; font-size:16px; font-weight:700;">Cotizar <span style="display:flex; align-items:center; justify-content:center; min-width:30px; height:30px; padding:0 6px; border-radius:999px; background:#FFFFFF; color:#D71920; font-size:14px;">{{ quoteCount }}</span></a>
+      <a href="https://wa.me/" style="display:flex; align-items:center; justify-content:center; gap:10px; height:46px; border-radius:999px; background:#25D366; color:#06301A; font-size:16px; font-weight:700;">WhatsApp</a>
     </div>
   </div>
 </sc-if>
+
+<dc-import name="NCISearch" open="{{ searchOpen }}" on-close="{{ closeSearch }}" hint-size="0px,0px"></dc-import>
+<dc-import name="NCIQuoteDrawer" open="{{ quoteOpen }}" on-close="{{ closeQuote }}" hint-size="0px,0px"></dc-import>
 
 </div>
 </x-dc>
@@ -497,7 +502,7 @@ class Component extends DCLogic {
     let q = {};
     try { const s = new URLSearchParams(location.search); q = { mega: s.get('mega') === '1', drawer: s.get('drawer') === '1', hero: s.get('hero') || undefined, scrolled: s.get('scrolled') === '1', static: s.get('static') === '1' }; } catch (e) {}
     this.q = q;
-    this.state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, scrolled: false, mega: null, drawer: null, acc: true, hc: -1, mh: -1, mc: -1, sh: -1, prog: 0, waTip: false, formVis: false, sent: false };
+    this.state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, scrolled: false, mega: null, drawer: null, acc: true, hc: -1, mh: -1, mc: -1, sh: -1, prog: 0, waTip: false, formVis: false, sent: false, quote: false, search: false, qc: 0 };
     this.rootRef = el => { this.root = el; };
     this.carRef = el => { this.car = el; };
     this.circuitRef = el => {
@@ -522,6 +527,10 @@ class Component extends DCLogic {
     this.drawerRef = el => anim(el, 'drawerEl');
   }
   componentDidMount() {
+    this.onSlash = e => { const t = e.target; if (e.key === '/' && !(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable))) { e.preventDefault(); this.setState({ search: true, mega: false }); } };
+    window.addEventListener('keydown', this.onSlash);
+    this.onQc = () => this.setState({ qc: window.NCI ? window.NCI.quote.count() : 0 });
+    window.addEventListener('nci-quote', this.onQc); if (window.NCI) this.onQc(); else window.addEventListener('nci-ready', this.onQc, { once: true });
     this.hcTimer = setInterval(() => { if (!this.hcPaused && !this.reduce) this.setState(s => ({ hs: ((s.hs || 0) + 1) % FEAT.length })); }, 4500);
     this.onResize = () => this.setState({ w: window.innerWidth });
     this.onScroll = () => { const s = window.scrollY > 40; if (s !== this.state.scrolled) this.setState({ scrolled: s }); };
@@ -533,7 +542,7 @@ class Component extends DCLogic {
       if (!pin || !st || !car) return;
       const on = window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (on !== !!this.pinOn) { this.pinOn = on; this.forceUpdate(); }
-      if (!on) { pin.style.height = ''; st.style.position = 'relative'; st.style.top = '0px'; st.style.padding = 'clamp(64px,8.3vw,120px) 0'; return; }
+      if (!on) { pin.style.height = ''; st.style.position = 'relative'; st.style.top = '0px'; st.style.padding = 'clamp(56px,6.4vw,96px) 0'; return; }
       st.style.padding = '32px 0 28px';
       const dist = Math.max(0, car.scrollWidth - car.clientWidth), h = st.offsetHeight, vh = window.innerHeight, hdr = 104;
       const top0 = h > vh - hdr ? vh - h : hdr + (vh - hdr - h) / 2;
@@ -586,7 +595,7 @@ class Component extends DCLogic {
     sec.addEventListener('mouseleave', this.onHeroLeave);
     this.heroSec = sec;
   }
-  componentWillUnmount() {
+  componentWillUnmount() { window.removeEventListener('keydown', this.onSlash); window.removeEventListener('nci-quote', this.onQc);
     if (this.circuit) this.circuit.destroy();
     if (this.svcCircuit) this.svcCircuit.destroy();
     window.removeEventListener('resize', this.onResize);
@@ -660,16 +669,16 @@ class Component extends DCLogic {
       slides: FEAT.map((c, i) => ({ src: c.src, name: c.name, op: i === hs ? 1 : 0, tf: i === hs ? 'scale(1)' : 'scale(1.06)', bar: i === hs ? '#FFFFFF' : 'rgba(255,255,255,0.3)', go: hgo(i) })) };
     const cats = FEAT.map((c, i) => {
       const h = st.hc === i;
-      return { ...c, i, src: c.src || '', slot: 'cat-' + c.key, bg: TONES[i % 3], iconW: ico(c.key, '#FFFFFF'), enter: set({ hc: i }), leave: set({ hc: -1 }),
+      return { ...c, i, href: 'NCI%20Categoria.dc.html?cat=' + c.key, src: c.src || '', slot: 'cat-' + c.key, bg: TONES[i % 3], iconW: ico(c.key, '#FFFFFF'), enter: set({ hc: i }), leave: set({ hc: -1 }),
         imgT: h ? 'scale(1.04)' : 'scale(1)', btnBg: h ? '#D71920' : 'rgba(255,255,255,0.92)', btnFg: h ? '#FFFFFF' : '#0A1A44', arrT: h ? 'translateX(4px)' : 'none', plusR: h ? 'rotate(90deg)' : 'none' };
     });
     const megaItems = ALL.map(([key, name], i) => {
       const h = st.mh === i;
-      return { key, name, iconN: ico(key, '#0A1A44'), enter: set({ mh: i }), leave: set({ mh: -1 }), bg: h ? 'rgba(10,26,68,0.06)' : 'transparent', arrO: h ? 1 : 0, arrT: h ? 'translateX(0)' : 'translateX(-6px)' };
+      return { key, name, href: 'NCI%20Categoria.dc.html?cat=' + key, iconN: ico(key, '#0A1A44'), enter: set({ mh: i }), leave: set({ mh: -1 }), bg: h ? 'rgba(10,26,68,0.06)' : 'transparent', arrO: h ? 1 : 0, arrT: h ? 'translateX(0)' : 'translateX(-6px)' };
     });
     const megaCards = [['valvulas', 'Válvulas', 'Foto: válvulas en planta'], ['fitting', 'Fitting', 'Foto: fitting instalado']].map(([key, name, ph], i) => {
       const h = st.mc === i;
-      return { name, ph, src: 'assets/' + key + '.png', slot: 'mega-' + key, bg: TONES[i + 1], enter: set({ mc: i }), leave: set({ mc: -1 }), imgT: h ? 'scale(1.04)' : 'scale(1)', btnBg: h ? '#D71920' : 'rgba(255,255,255,0.92)', btnFg: h ? '#FFFFFF' : '#0A1A44', arrT: h ? 'translateX(4px)' : 'none', plusR: h ? 'rotate(90deg)' : 'none' };
+      return { name, ph, href: 'NCI%20Categoria.dc.html?cat=' + key, src: 'assets/' + key + '.png', slot: 'mega-' + key, bg: TONES[i + 1], enter: set({ mc: i }), leave: set({ mc: -1 }), imgT: h ? 'scale(1.04)' : 'scale(1)', btnBg: h ? '#D71920' : 'rgba(255,255,255,0.92)', btnFg: h ? '#FFFFFF' : '#0A1A44', arrT: h ? 'translateX(4px)' : 'none', plusR: h ? 'rotate(90deg)' : 'none' };
     });
     const fh = st.sh === 0, ph = st.sh === 1;
     const svc = {
@@ -696,8 +705,12 @@ class Component extends DCLogic {
       isMobile, isNotMobile: !isMobile, isCompact, isDesktopNav: !isCompact,
       heroSans, heroSerif: !heroSans,
       hdr, megaOpen, drawerOpen,
-      quoteCount: p.quoteCount ?? 0,
-      cotizarPad: isCompact ? '14px' : '20px',
+      searchInBar: (document.documentElement.clientWidth || window.innerWidth) >= 768,
+      sz: (() => { const vw = document.documentElement.clientWidth || window.innerWidth, m = vw < 768; return { btn: m ? '40px' : '48px', ico: m ? '20' : '22', ico2: m ? '18' : '20', badge: m ? '30px' : '36px', badgeFs: m ? '13px' : '15px', gap: m ? '6px' : '8px', cGap: m ? '6px' : '10px', logo: m ? '20px' : 'clamp(22px,2.1vw,30px)' }; })(), quoteOpen: !!st.quote, searchOpen: !!st.search,
+      openQuote: () => this.setState({ quote: true, mega: false, drawer: false }), closeQuote: () => this.setState({ quote: false }),
+      openSearch: () => this.setState({ search: true, mega: false, drawer: false }), closeSearch: () => this.setState({ search: false }),
+      quoteCount: st.qc,
+      cotizarPad: isCompact ? '12px' : '20px',
       ctaFlex: isMobile ? '1 1 100%' : '0 0 auto',
       toggleMega: () => this.setState({ mega: !megaOpen }),
       openMega: () => { if (!megaOpen) this.setState({ mega: true }); },
